@@ -1,40 +1,42 @@
 <template>
-  <div class="container pt-4 heroContainer">
-    <div class="row justify-content-center align-items-center mt-md-4" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-5">
+ <div class="heroContainer">
+    <div class="herobgcover"></div>
+    <div class="container pt-4">
+      <div class="row justify-content-center align-items-center mt-md-4" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-5">
 
-            <figure data-aos="fade-down" class="text-md-start pt-4">
-                  <h1 class="fw-bold" style="font-size:35px">
-                      Hello EveryOne !
-                  </h1>
-                  <figcaption class="pt-3 blockquote-footer fw-bold" style="font-size:16px;">
-                      My name is Zin Min Htet
-                  </figcaption>
-            </figure>
-            <div data-aos="fade-left" class="row justify-content-center align-items-center d-md-none">
-                <div class="col-10 col-sm-6 text-center" @mouseover="imgMouseover()" @mouseleave="imgMouseleave()">
-                    <img :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
-                    <div :style="imgShadow" class="heroimgShadowMobile"></div>
-                </div>
-            </div>
-            <div data-aos="fade-left" class="text-center col-12" >
-                <h5 class="p-1 pt-sm-5 pt-md-4 pt-5 fw-bold text-start" style="letter-spacing:1px;">
-                  I am a BackEnd Web Developer with over 3 years of experience with PHP.I have acquired the skill necessary to build great websites.
-                </h5>
-                <div @click="clickCvForm()" @mouseleave="btnMsg='CV Form'" @mouseover="btnMsg='Check it'" id="hero-btn">
-                    <span>{{btnMsg}}</span>
-                    <div></div>
-                </div>
-            </div>
+              <figure data-aos="fade-down" class="text-md-start pt-4">
+                    <h1 class="fw-bold" style="font-size:35px">
+                        Hello EveryOne !
+                    </h1>
+                    <figcaption class="pt-3 blockquote-footer fw-bold" style="font-size:16px;">
+                        My name is Zin Min Htet
+                    </figcaption>
+              </figure>
+              <div data-aos="fade-left" class="row justify-content-center align-items-center d-md-none">
+                  <div class="col-10 col-sm-6 text-center">
+                      <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
+                      <div :style="imgShadow" class="heroimgShadowMobile"></div>
+                  </div>
+              </div>
+              <div data-aos="fade-left" class="text-center col-12" >
+                  <h5 class="p-1 pt-sm-5 pt-md-4 pt-5 fw-bold text-start" style="letter-spacing:1px;color:#232">
+                    I am a BackEnd Web Developer with over 3 years of experience with PHP.I have acquired the skill necessary to build great websites.
+                  </h5>
+                  <div @click="clickCvForm()" @mouseleave="btnMsg='CV Form'" @mouseover="btnMsg='Check it'" id="hero-btn">
+                      <span>{{btnMsg}}</span>
+                      <div></div>
+                  </div>
+              </div>
 
-        </div>
-        <div class="col-10 d-none d-md-block col-md-5 col-lg-4 align-self-center offset-lg-1" data-aos="fade-left">
-            <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
-            <div :style="imgShadow" class="heroimgShadow"></div>
-        </div>
+          </div>
+          <div class="col-10 d-none d-md-block col-md-5 col-lg-5 align-self-center offset-lg-1" data-aos="fade-left">
+              <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
+              <div :style="imgShadow" class="heroimgShadow"></div>
+          </div>
+      </div>
     </div>
-  </div>
-
+ </div>
 </template>
 
 <script>
@@ -71,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 
-$primary-bg: "rgb(232, 235, 243)";
+$primary-bg: rgb(255, 255, 255);
 
 [data-aos] {
 
@@ -84,14 +86,31 @@ $primary-bg: "rgb(232, 235, 243)";
 .heroContainer{
     background: $primary-bg;
     min-height: 100vh;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    .herobgcover{
+      clip-path: polygon(100% 9%, 100% 100%, 0 100%, 71% 29%);
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #d6f0ff;
+    //   background-image: linear-gradient(160deg, #d6f0ff 0%, #80D0C7 100%);
+      height: 100vh;
+      width: 100%;
+    }
 }
 
 .heroImage{
-    background: rgba(49, 135, 179, 0.575);
+    // background-color: #e4f5ff;
+    background-color: #d6f0ff;
+    // background-image: linear-gradient(160deg, #d6f0ff 0%, #80D0C7 100%);
     border-radius: 12%;
-    border-top-left-radius: 60%;
+    border-top-left-radius: 65%;
     border-bottom-right-radius: 30%;
-    box-shadow: 1px 2px 5px rgb(126, 137, 236);
+    border:none;
+    box-shadow: 1px 2px 5px rgb(83, 165, 185);
     width: 70%;
 }
 .heroimgShadowMobile{

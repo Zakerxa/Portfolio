@@ -14,9 +14,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+$primary-color :  #d6f0ff;
 * {
   scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
 }
 
 .main{

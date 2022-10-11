@@ -1,6 +1,6 @@
 <template>
  <div class="navigation">
-     <div class="d-md-block" style="min-height: 5px;background-color: #f00;"></div>
+     <div class="d-md-block" style="min-height: 5px;background-color: #d6f0ff;"></div>
     <!-- Nav Bar Desktop -->
     <nav class="navbar d-block navbar-expand-md navbar-light primaryColor border-bottom">
         <div class="container-fluid">
@@ -105,6 +105,7 @@ export default {
 
 .navigation{
     position:fixed;
+    background: #fff;
     top: 0;
     z-index: 9999;
     width: 100%;
@@ -118,13 +119,13 @@ export default {
    }
    &:active{
      transition:border-bottom .2s;
-     border-bottom: 3px solid #f00;
+     border-bottom: 3px solid #d6f0ff;;
    }
 }
 .exact-active {
    font-weight: bold;
    cursor: pointer;
-    border-bottom: 3px solid #f00;
+    border-bottom: 3px solid #d6f0ff;;
 }
 }
 

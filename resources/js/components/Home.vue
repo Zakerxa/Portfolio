@@ -1,11 +1,14 @@
 <template>
-  <div class="container-fluid">
+  <div>
       <Hero/>
+      <Services/>
   </div>
 </template>
 
 <script>
 import Hero from './Hero.vue';
+import Services from './Service.vue';
+
 export default {
    data(){
     return{
@@ -13,7 +16,8 @@ export default {
     }
    },
    components:{
-    Hero
+    Hero,
+    Services
    },
    methods:{
 
