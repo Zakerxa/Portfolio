@@ -13,15 +13,21 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
-import { faMobileAndroid } from '@fortawesome/free-solid-svg-icons';
+import { faDesktop } from '@fortawesome/free-solid-svg-icons';
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faShieldHalved } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faIdCardClip } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 
 /* add icons to the library */
-library.add(faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faMobileAndroid)
+library.add(faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop)
 
-
+// AOS Library
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const app = createApp(App).use(router);
 app.component('font-awesome-icon', FontAwesomeIcon);

@@ -1,11 +1,11 @@
 <template>
- <div class="heroContainer">
-    <div class="herobgcover"></div>
+ <div class="heroContainer" :style="{'background':secondaryBg}">
+    <div class="herobgcover" :style="{'background':primaryBg}"></div>
     <div class="container pt-4">
       <div class="row justify-content-center align-items-center mt-md-4" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-5">
+          <div :style="{'color':primaryColor}" class="col-12 col-sm-11 col-md-6 col-lg-6 pt-5">
 
-              <figure data-aos="fade-down" class="text-md-start pt-4">
+              <figure data-aos="fade-down" data-aos-delay="300" class="text-md-start pt-4">
                     <h1 class="fw-bold" style="font-size:35px">
                         Hello EveryOne !
                     </h1>
@@ -13,14 +13,16 @@
                         My name is Zin Min Htet
                     </figcaption>
               </figure>
-              <div data-aos="fade-left" class="row justify-content-center align-items-center d-md-none">
-                  <div class="col-10 col-sm-6 text-center">
+
+              <div data-aos="fade-left" data-aos-delay="500" class="row justify-content-center align-items-center d-md-none">
+                  <div class="col-10 col-sm-8 text-center">
                       <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
                       <div :style="imgShadow" class="heroimgShadowMobile"></div>
                   </div>
               </div>
-              <div data-aos="fade-left" class="text-center col-12" >
-                  <h5 class="p-1 pt-sm-5 pt-md-4 pt-5 fw-bold text-start" style="letter-spacing:1px;color:#232">
+
+              <div data-aos="fade-left" data-aos-delay="800" class="text-center col-12" >
+                  <h5 class="p-1 pt-sm-5 pt-md-4 pt-5 fw-bold text-start" style="letter-spacing:0.3px;">
                     I am a BackEnd Web Developer with over 3 years of experience with PHP.I have acquired the skill necessary to build great websites.
                   </h5>
                   <div @click="clickCvForm()" @mouseleave="btnMsg='CV Form'" @mouseover="btnMsg='Check it'" id="hero-btn">
@@ -30,7 +32,7 @@
               </div>
 
           </div>
-          <div class="col-10 d-none d-md-block col-md-5 col-lg-5 align-self-center offset-lg-1" data-aos="fade-left">
+          <div class="col-10 d-none d-md-block col-md-6 col-lg-5 align-self-center offset-lg-1" data-aos="fade-left">
               <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
               <div :style="imgShadow" class="heroimgShadow"></div>
           </div>
@@ -44,28 +46,32 @@ export default {
    data(){
     return{
         btnMsg: 'CV Form',
-        imgRotate : 'transform: rotateX(360deg) rotateY(180deg);',
+        imgRotate : `transform: rotateX(360deg) rotateY(180deg);background:${this.primaryBg}`,
         imgShadow : ''
     }
+   },
+   props:{
+     primaryColor : String,
+     primaryBg : String,
+     secondaryBg: String
    },
    methods:{
     clickCvForm(){
         setTimeout(() => window.open('/ZinMinHtet.pdf', '_blank'), 400);
     },
     imgMouseover(){
-      this.imgRotate = 'transition:transform 0.7s;transform: rotateX(0deg) rotateY(180deg);';
-      this.imgShadow = 'transition:transform 0.8s;transform:rotateY(180deg)';
+      this.imgRotate = `transition:transform 0.7s;transform: rotateX(0deg) rotateY(180deg);background:${this.primaryBg}`;
+      this.imgShadow = `transition:transform 0.8s;transform:rotateY(180deg);background:${this.primaryBg}`;
     },
     imgMouseleave(){
-      this.imgRotate = 'transition:transform 0.5s;transform: rotateY(0deg) rotateX(0deg);';
-      this.imgShadow = 'transition:transform 0.7s;transform:rotateY(0deg)';
+      this.imgRotate = `transition:transform 0.5s;transform: rotateY(0deg) rotateX(0deg);background:${this.primaryBg}`;
+      this.imgShadow = `transition:transform 0.7s;transform:rotateY(0deg);background:${this.primaryBg}`;
     }
    },
    mounted(){
-     AOS.init();
      setTimeout(() => {
-         this.imgRotate = 'transition:transform 1s;transform: rotateX(0deg) rotateY(0deg);';
-         this.imgShadow = 'transition:transform 1.2s;transform:rotateY(180deg)';
+         this.imgRotate = `transition:transform 1s;transform: rotateX(0deg) rotateY(0deg);background:${this.primaryBg}`;
+         this.imgShadow = `transition:transform 1.2s;transform:rotateY(180deg);background:${this.primaryBg}`;
      }, 700);
    }
 }
@@ -73,39 +79,31 @@ export default {
 
 <style lang="scss" scoped>
 
-$primary-bg: rgb(255, 255, 255);
+// [data-aos] {
 
-[data-aos] {
-
-  body[data-aos-easing="new-easing"] &,
-  &[data-aos][data-aos-easing="new-easing"] {
-    transition-timing-function: cubic-bezier(.250, .250, .750, .750);
-  }
-}
+//   body[data-aos-easing="new-easing"] &,
+//   &[data-aos][data-aos-easing="new-easing"] {
+//     transition-timing-function: cubic-bezier(.250, .250, .750, .750);
+//   }
+// }
 
 .heroContainer{
-    background: $primary-bg;
     min-height: 100vh;
     position: relative;
     padding: 0;
     margin: 0;
     .herobgcover{
-      clip-path: polygon(100% 9%, 100% 100%, 0 100%, 71% 29%);
+      clip-path: polygon(0 0, 100% 0, 80% 38%, 0% 100%);
       position: absolute;
       z-index: 0;
       top: 0;
       bottom: 0;
-      background-color: #d6f0ff;
-    //   background-image: linear-gradient(160deg, #d6f0ff 0%, #80D0C7 100%);
       height: 100vh;
       width: 100%;
     }
 }
 
 .heroImage{
-    // background-color: #e4f5ff;
-    background-color: #d6f0ff;
-    // background-image: linear-gradient(160deg, #d6f0ff 0%, #80D0C7 100%);
     border-radius: 12%;
     border-top-left-radius: 65%;
     border-bottom-right-radius: 30%;
@@ -113,8 +111,20 @@ $primary-bg: rgb(255, 255, 255);
     box-shadow: 1px 2px 5px rgb(83, 165, 185);
     width: 70%;
 }
+
+@media screen and (min-width:450px) and (max-width : 575px) {
+  .heroImage{
+    border-radius: 12%;
+    border-top-left-radius: 65%;
+    border-bottom-right-radius: 30%;
+    border:none;
+    box-shadow: 1px 2px 5px rgb(83, 165, 185);
+    width: 60%;
+  }
+}
+
 .heroimgShadowMobile{
-    background: rgba(26, 116, 161, 0.575);
+    background: rgba(43, 91, 116, 0.664);
     border-radius: 50%;
     margin-top: 5px;
     box-shadow: 1px 2px 5px rgb(106, 118, 230);
@@ -124,7 +134,7 @@ $primary-bg: rgb(255, 255, 255);
 }
 
 .heroimgShadow{
-    background: rgba(23, 116, 163, 0.575);
+    background: rgba(43, 91, 116, 0.664);
     border-radius: 50%;
     margin-top: 5px;
     box-shadow: 1px 2px 5px rgb(106, 118, 230);
@@ -133,9 +143,9 @@ $primary-bg: rgb(255, 255, 255);
 }
 
 #hero-btn {
-  background: rgb(58, 198, 72);
-  background: radial-gradient(circle, rgba(58, 198, 72, 1) 20%, rgba(58, 198, 72, 1) 86%);
-  box-shadow: 2px 1px 10px rgb(77, 76, 76);
+  background: rgb(63, 149, 153);
+//   background: radial-gradient(circle, rgb(183, 241, 248) 20%, rgb(217, 248, 220) 86%);
+  box-shadow: 2px 1px 10px rgb(78, 59, 59);
   padding: 8px 10px;
   position: relative;
   z-index:0;
@@ -170,10 +180,8 @@ $primary-bg: rgb(255, 255, 255);
     span {
       color: #000;
     }
-
     div {
       width: 170px;
-
     }
   }
 }
