@@ -25,10 +25,14 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.2.0",
+        "@fortawesome/free-brands-svg-icons": "^6.2.0",
         "@fortawesome/free-regular-svg-icons": "^6.2.0",
         "@fortawesome/free-solid-svg-icons": "^6.2.0",
         "@fortawesome/vue-fontawesome": "^3.0.1",
-        "vue-router": "^4.1.5",
-        "aos": "^2.3.4"
+        "@splidejs/vue-splide": "^0.6.12",
+        "@zakerxa/vue-multiple-image-upload": "^1.0.6",
+        "aos": "^2.3.4",
+        "swiper": "^8.4.4",
+        "vue-router": "^4.1.5"
     }
 }

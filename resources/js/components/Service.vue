@@ -1,11 +1,11 @@
 <template>
  <div class="heroContainer" :style="{'background':secondaryBg}">
-    <!-- <div class="servicesBgCover" :style="{'background':primaryBg}"></div> -->
+    <div class="servicesBgCover" :style="{'background':primaryBg}"></div>
     <div class="container">
       <div :style="{'color':primaryColor}" class="row justify-content-center align-items-center pb-5" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
         <!-- Header -->
-        <div class="col-12 text-center mt-5 pb-3">
-           <h1 class="fw-bold">My Services</h1>
+        <div class="col-12 text-center mt-5 pb-3 position-relative">
+           <h1 data-aos="zoom-in" class="fw-bold">My Services</h1>
         </div>
 
         <!-- Services Card -->
@@ -82,6 +82,16 @@ export default {
     position: relative;
     padding: 0;
     margin: 0;
+    .servicesBgCover{
+      clip-path: polygon(0 0, 100% 0, 80% 38%, 0% 100%);
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      bottom: 0;
+      height: 100vh;
+      width: 100%;
+    }
+
 }
 
 </style>
