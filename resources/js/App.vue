@@ -1,10 +1,20 @@
 <template>
-  <div class="main">
-     <Transition appear name="fade">
-       <Navigation v-if="scrollDown"/>
-     </Transition>
-     <router-view></router-view>
-  </div>
+
+    <div v-if="loading" class="loading">
+       <!-- Show Loading if Data not ready yet -->
+       <div class="row d-flex align-items-center" style="height:100vh;width:100vw;">
+           <div class="col-12 text-center">
+               <h3 class="fw-bold">{{loadingIcon}}</h3>
+           </div>
+       </div>
+    </div>
+    <div v-else>
+       <Transition appear name="fade">
+         <Navigation v-if="scrollDown"/>
+       </Transition>
+       <router-view></router-view>
+    </div>
+
 </template>
 
 <script>
@@ -12,13 +22,15 @@ import Navigation from './components/Navigation.vue';
 export default {
     data(){
         return{
+            loadingIcon : '<Zakerxa/>',
+            loading : true,
             scrollPosition : '',
             scrollDown : true
         }
     },
-   components:{
-    Navigation
-   },
+    components:{
+      Navigation
+    },
     created () {
       window.addEventListener('scroll', this.handleScroll);
     },
@@ -33,6 +45,10 @@ export default {
         }else this.scrollDown = true;
         this.scrollPosition = currentScrollPosition;
        }
+    },
+    mounted(){
+       document.addEventListener('DOMContentLoaded', () => this.loading = false);
+       this.$nextTick(()=> console.log("Render has been loaded"));
     }
 }
 </script>
@@ -47,6 +63,14 @@ $primary-color :  #d6f0ff;
 
 .main{
     min-height: 100vh;
+}
+
+.loading{
+    background: #d6f7ff;
+    z-index:10;
+    position:fixed;
+    height:100vh;
+    width:100vw;
 }
 
 .fade-enter-active,

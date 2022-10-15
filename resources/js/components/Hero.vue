@@ -144,8 +144,8 @@ export default {
 
 #hero-btn {
   background: rgb(63, 149, 153);
-//   background: radial-gradient(circle, rgb(183, 241, 248) 20%, rgb(217, 248, 220) 86%);
-  box-shadow: 2px 1px 10px rgb(78, 59, 59);
+  background: radial-gradient(circle, rgb(115, 184, 191) 20%, rgb(111, 185, 189) 86%);
+  box-shadow: 2px 1px 10px rgb(125, 199, 236);
   padding: 8px 10px;
   position: relative;
   z-index:0;

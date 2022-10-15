@@ -12,7 +12,7 @@
                 <div class="row">
                   <div data-aos="fade-right" data-aos-offset="150" v-for="skill in skills" :key="skill.id" class="mt-4 col-12 col-sm-11 col-md-6">
                     <b>{{skill.language}}</b>
-                    <div class="progress mt-2">
+                    <div class="progress mt-2" style="box-shadow: 1px 2px 5px rgb(125, 199, 236);">
                       <div class="progress-bar fw-bold" role="progressbar" :style="{'width':skill.level+'%','background':progressColor}" :aria-label="skill.language" :aria-valuenow="skill.level" aria-valuemin="0" aria-valuemax="100">{{skill.level}} %</div>
                     </div>
                   </div>

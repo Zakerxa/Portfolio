@@ -7,11 +7,12 @@
 
       <About    primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
 
-      <Services primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232" servicesCard="rgb(229, 255, 254)"/>
-
       <Projects primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232" servicesCard="rgb(229, 255, 254)"/>
 
-      <Footer   primary-bg="#d6f7ff" secondary-bg="#333" primary-color="#232"/>
+      <Services primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232" servicesCard="#d6f7ff"/>
+
+      <Footer   primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
+
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
  <div class="heroContainer" :style="{'background':secondaryBg}">
     <div class="servicesBgCover" :style="{'background':primaryBg}"></div>
-    <div class="container">
-      <div :style="{'color':primaryColor}" class="row justify-content-center align-items-center pb-5" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
+    <div class="container pb-4">
+      <div :style="{'color':primaryColor}" class="row justify-content-center align-items-center pb-5 pt-2" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
         <!-- Header -->
         <div class="col-12 text-center mt-5 pb-3 position-relative">
            <h1 data-aos="zoom-in" class="fw-bold">My Services</h1>
@@ -10,7 +10,7 @@
 
         <!-- Services Card -->
         <div v-for="service in services" :key="service.id" class="col-11 col-sm-10 col-md-6 col-lg-4 mt-4 mt-md-5">
-            <div data-aos="fade-left" class="card" :style="{'background':servicesCard}" style="min-height:220px;box-shadow: 1px 2px 5px rgb(120, 165, 125);">
+            <div data-aos="fade-left" class="card" :style="{'background':servicesCard}" style="min-height:220px; box-shadow: 1px 2px 5px rgb(125, 199, 236);">
               <div class="card-body text-center">
                 <font-awesome-icon style="font-size:30px;" :icon="`fa-solid ${service.icon}`" />
                 <h5 class="fw-bold">{{service.name}}</h5>
@@ -91,7 +91,7 @@ export default {
       height: 100vh;
       width: 100%;
     }
-
 }
+
 
 </style>

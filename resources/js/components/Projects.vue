@@ -1,21 +1,19 @@
 <template>
  <div class="heroContainer" id="projects" :style="{'background':secondaryBg}">
 
-    <div class="container">
+    <div class="container pt-3">
       <div class="row align-items-center justify-content-center pt-5 pb-5" :style="{'color':primaryColor}" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
 
         <!-- Header -->
-        <div data-aos="zoom-in" data-aos-offset="200" class="col-12 text-center pb-4 pt-4">
+        <div data-aos="zoom-in" data-aos-offset="200" class="col-12 text-center pb-4">
            <h2 class="fw-bold underline">Some of my Projects</h2>
         </div>
 
-       <Splide :options="options" aria-label="My Favorite Images">
-           <SplideSlide v-for="project in projects" :key="project.id" class="col-11 mt-4 mt-md-5 text-center">
-              <!-- Projects Card -->
-              <project-card :projectData="project" :primaryBg="primaryBg" :primaryColor="primaryColor" :secondaryBg="secondaryBg"></project-card>
-               <!-- Projects Card -->
-           </SplideSlide>
-        </Splide>
+        <div class="slickSlider mt-2 mt-md-5 pb-3">
+          <div v-for="project in projects" :key="project.id" class="text-center m-3">
+             <project-card :projectData="project" :primaryBg="primaryBg" :primaryColor="primaryColor" :secondaryBg="secondaryBg"></project-card>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -25,10 +23,9 @@
 </template>
 
 <script>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import 'slick-carousel';
 import projectCard from './projectCard.vue';
-// Default theme
-import '@splidejs/vue-splide/css';
+
 
 export default {
    data(){
@@ -99,39 +96,50 @@ export default {
         }
       ],
       options:{
-        rewind : true,
-        perPage: 3,
-        gap    : '2rem',
-        height : '100%',
-        breakpoints:
-           {
-              992: {
-                  perPage: 3,
-                  gap: '.7rem'
-              },
-              991: {
-                  perPage: 2,
-                  gap: '2rem',
-                  width: 900
-              },
-              768: {
-                  perPage: 1,
-                  gap: '.7rem',
-                  width: 380
-              },
-         },
+        dots: true,
+        infinite: false,
+        speed: 300,
+        arrows: true,
+        centerMode: false,
+        centerPadding: '20px',
+        slidesToShow: 3,
+        slidesToScroll: 2,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    arrows: false,
+                    centerPadding: '40px',
+                    slidesToShow: 2,
+                    slidesToScroll: 3,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    mobileFirst: true,
+                }
+            }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
       }
     }
    },
    components:{
-    Splide,
-    SplideSlide,
     projectCard
    },
    props:{
      primaryColor : String,
      primaryBg : String,
      secondaryBg: String
+   },
+   mounted(){
+    $('.slickSlider').slick(this.options);
    }
 }
 </script>
