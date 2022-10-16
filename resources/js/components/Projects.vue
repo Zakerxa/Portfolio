@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import 'slick-carousel';
 import projectCard from './projectCard.vue';
 
 

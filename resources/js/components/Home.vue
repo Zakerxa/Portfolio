@@ -1,5 +1,6 @@
 <template>
   <div>
+      <ContactMe primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
 
       <Hero     primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
 
@@ -23,6 +24,7 @@ import Skills from './Skills.vue';
 import About from './About.vue';
 import Services from './Service.vue';
 import Projects from './Projects.vue';
+import ContactMe from './ContactMe.vue';
 import Footer from './Footer.vue';
 
 export default {
@@ -37,6 +39,7 @@ export default {
     About,
     Services,
     Projects,
+    ContactMe,
     Footer,
     Upload
    },
