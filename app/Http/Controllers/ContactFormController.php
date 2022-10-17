@@ -15,9 +15,6 @@ class ContactFormController extends Controller
 
     public function store(Request $request)
     {
-
-
-        // return $request->all();
         try {
             $inputProduct = $request->validate([
                 'subject' => ['required'],

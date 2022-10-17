@@ -1,18 +1,19 @@
 <template>
   <div>
-      <ContactMe primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
 
-      <Hero     primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
+      <Hero     :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
-      <Skills   primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232" progress-color="#a3dceb"/>
+      <Skills   :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" progress-color="#a3dceb"/>
 
-      <About    primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
+      <About    :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
-      <Projects primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232" servicesCard="rgb(229, 255, 254)"/>
+      <Projects :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" servicesCard="rgb(229, 255, 254)"/>
 
-      <Services primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232" servicesCard="#d6f7ff"/>
+      <Services :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" :servicesCard="primaryBg"/>
 
-      <Footer   primary-bg="#d6f7ff" secondary-bg="#fff" primary-color="#232"/>
+      <ContactMe :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
+
+      <Footer   :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
   </div>
 </template>
@@ -30,6 +31,9 @@ import Footer from './Footer.vue';
 export default {
    data(){
     return{
+      primaryBg    : '#d6f7ff',
+      secondaryBg  : '#fff',
+      primaryColor : '#232',
 
     }
    },

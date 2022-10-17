@@ -9,4 +9,12 @@ class ContactForm extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
+    public function setPasswordAttribute($value){
+      $this->attributes['password'] = bcrypt($value);
+    }
 }

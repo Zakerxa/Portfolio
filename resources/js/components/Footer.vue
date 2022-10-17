@@ -34,19 +34,19 @@
                      <p> Location  </p>
                    </div>
                    <div class="col-7 text-start p-0 pl-3">
-                     <a href="https://goo.gl/maps/ajDihmwUN9zNai4w7" target="_blank">: Myanmar, Yangon</a>
+                     <a class="text-decoration-none text-dark" href="https://goo.gl/maps/ajDihmwUN9zNai4w7" target="_blank">: Myanmar, Yangon</a>
                    </div>
                    <div class="col-3 text-start p-0">
                      <p> Phone  </p>
                    </div>
                    <div class="col-7 text-start p-0 pl-3">
-                      <a href="tel:+959777637858">: +959 777-637-858</a>
+                      <a class="text-decoration-none text-dark" href="tel:+959777637858">: +959 777-637-858</a>
                    </div>
                    <div class="col-3 text-start p-0">
                      <p> Email  </p>
                    </div>
                    <div class="col-7 text-start p-0 pl-3">
-                     <a href="mailto:zakerxa@gmail.com" target="_blank">: zakerxa@gmail.com</a>
+                     <a class="text-decoration-none text-dark" href="mailto:zakerxa@gmail.com" target="_blank">: zakerxa@gmail.com</a>
                    </div>
                 </div>
             </div>

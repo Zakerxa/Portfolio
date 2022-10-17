@@ -15,15 +15,20 @@
         </div>
 
         <div class="col-12 col-sm-9 col-md-6 col-lg-5 offset-lg-1">
-
-            <div id="logout-form">
+            <div>
 
                 <div class="row" :onload="checkingForm()">
 
+                <div class="col-12">
+                   <div v-if="errors[0]" class="">
+                     <p class="alert alert-danger">{{errors[0]}}</p>
+                   </div>
+                </div>
+
                  <div class="col-12 mb-3">
                     <label class="pb-1">Select a subject.</label>
-                    <select @change="onChange($event)" v-model="form.subject" class="boxshadow form-select" aria-label="Default select example">
-                      <option selected>I want to</option>
+                    <select @change="onChange($event)" v-model="form.subject" :class="error.subject" class="boxshadow form-select" aria-label="Default select example">
+                      <option selected value="">I want to</option>
                       <option value="1">Recommend</option>
                       <option value="2">Discuss</option>
                       <option value="3">Hire</option>
@@ -33,22 +38,22 @@
 
                  <div class="col-5 mb-3">
                    <label class="pb-1" for="floatingName">Full Name</label>
-                   <input type="text" v-model="form.name" class="boxshadow form-control p-2" id="floatingName" placeholder="Your Full Name" autocomplete="off" required>
+                   <input type="text" v-model="form.name" :class="error.name" class="boxshadow form-control p-2" id="floatingName" placeholder="Your Full Name" autocomplete="off" required>
                  </div>
 
                  <div class="col-7 mb-3">
                    <label class="pb-1" for="floatingPhoneNumber">Phone Number</label>
-                   <input type="number" v-model="form.phone" class="boxshadow form-control p-2" id="floatingPhoneNumber" placeholder="+959 XXX-XXXXXX" autocomplete="off" required>
+                   <input type="number" v-model="form.phone" :class="error.phone" class="boxshadow form-control p-2" id="floatingPhoneNumber" placeholder="+95" autocomplete="off" required>
                  </div>
 
                  <div class="col-12 mb-3">
                    <label class="pb-1" for="floatingInput">Email address</label>
-                    <input type="email" v-model="form.email" class="boxshadow form-control p-2" id="floatingInput" placeholder="name@example.com" autocomplete="off" required>
+                    <input type="email" v-model="form.email" :class="error.email" class="boxshadow form-control p-2" id="floatingInput" placeholder="name@example.com" autocomplete="off" required>
                  </div>
 
                  <div class="col-12 mb-3">
                    <label class="pb-1" for="floatingTextarea2">Messages</label>
-                   <textarea v-model="form.message" class="boxshadow form-control p-2" spellcheck="false" placeholder="Leave a message here" id="floatingTextarea2" style="height: 100px" required></textarea>
+                   <textarea v-model="form.message" :class="error.message" class="boxshadow form-control p-2" spellcheck="false" placeholder="Leave a message here" id="floatingTextarea2" style="height: 100px" required></textarea>
                  </div>
 
                   <div class="col-12">
@@ -59,17 +64,25 @@
 
                 <!-- Modal Password -->
                 <div class="col-12">
-                   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                   <div class="modal fade" id="modalPassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                      <div class="modal-dialog modal-dialog-centered">
-                       <div class="modal-content">
+                       <div class="modal-content boxshadow border-0">
+
+                         <div v-show="readyFormLoading" class="overlayLoading">
+                            <div class="row">
+                              <img src="/images/icon/loading.png" style="width:80px;" alt="">
+                            </div>
+                         </div>
+
                          <div class="modal-header">
                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Required Password</h1>
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                            <div class="col-12 mb-3">
+                            <p v-show="errPass[0]" class="alert alert-danger">{{errPass[0]}}</p>
+                            <div class="col-12 mb-3 position-relative">
                                <input :type="checkPassword" v-model="form.password" @keyup="checkPass" class="form-control p-2" id="passwordInput" placeholder="Password" autocomplete="off" required>
-                               <font-awesome-icon @click="eyecheck()" :icon="checkIcon" class="d-block text-end position-absolute pt-2 pb-2" style="margin-right: 10px;cursor:pointer;top:21px;right:15px;"></font-awesome-icon>
+                               <font-awesome-icon @click="eyecheck()" :icon="checkIcon" class="d-block text-end position-absolute pt-2 pb-2" style="margin-right: 10px;cursor:pointer;top:6px;right:0;"></font-awesome-icon>
                                <small for="passwordInput" class="text-muted p-2">Password at least 6 characters long.</small>
                              </div>
                              <div class="col-12">
@@ -86,13 +99,39 @@
                    </div>
                 </div>
 
+                <!-- Modal SuccessForm -->
+                <div class="col-12">
+                    <div class="modal fade" id="modalSuccessForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-centered">
+                       <div class="modal-content boxshadow border-0">
+                         <div class="modal-header">
+                           <h3 class="modal-title fs-5 fw-bold" style="letter-spacing:1px;" id="staticBackdropLabel"><font-awesome-icon icon="fa-solid fa-check-circle" class="text-success" /> Successfully Sent </h3>
+                         </div>
+                         <div class="modal-body">
+                             <div class="col-12">
+                                <p style="font-size:17px;">I have received your
+                                    <span v-if="form.subject == 1">recommendation form</span>
+                                    <span v-else-if="form.subject == 2">discussion form</span>
+                                    <span v-else-if="form.subject == 3">hiring form</span>
+                                    <span v-else>testing form</span>.
+                                    I will reply to you within 48 hours.</p>
+                                <p class="text-muted text-end pt-2">Thanks for contact to me.</p>
+                             </div>
+                         </div>
+                         <div class="modal-footer">
+                           <button type="button" data-bs-dismiss="modal" class="btn readyFormBtn">Got it</button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                </div>
+
             </div>
         </div>
 
 
       </div>
     </div>
-
 
  </div>
 </template>
@@ -102,41 +141,33 @@
 export default {
    data(){
     return{
-        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         checkPassword  : 'password',
         checkIcon      : 'fa-solid fa-eye-slash',
         checkState     : true,
         readyBtn       : true,
         disPassword    : true,
+        readyFormLoading : false,
         form:{
-            subject : 'I want to',
+            subject : '',
             name    : 'Zin Min Htet',
-            phone   : '09',
+            phone   : '09687717767',
             email   : '@gmail.com',
             message : 'Hello World',
             password: ''
         },
         errors : [],
-        error  : {}
+        error  : {},
+        errPass: []
     }
    },
    methods:{
     checkPass(e){
-     if(this.form.password.length >= 6)this.disPassword = false;
+     if(this.form.password.length >= 3) this.disPassword = false;
      else this.disPassword = true;
     },
     checkingForm(){
-       if(this.form.subject == 'I want to' || this.form.name == '' || this.form.email == '' || this.form.phone == '' || this.form.message == '') {
-           this.readyBtn = true;
-           return null;
-       }
-       if(this.form.name.length < 5 || this.form.phone.length < 9 || this.form.message.length < 10 || this.form.email.length < 10) {
-           this.readyBtn = true;
-           console.log("Btn Error Sec");
-           return undefined;
-       }
-       this.readyBtn = false;
-       console.log("Btn Ready");
+       if(this.form.subject == '' || this.form.name.length <= 6 || this.form.phone.length <= 9 || this.form.message.length <= 10 || this.form.email.length <= 10) this.readyBtn = true;
+       else this.readyBtn = false;
     },
     onChange(event) {
         this.form.subject = event.target.value;
@@ -152,8 +183,7 @@ export default {
        }
     },
     readyForm(){
-       $('#staticBackdrop').modal('show');
-       console.log(this.form);
+       $('#modalPassword').modal('show');
     },
     inputFormData(){
           let formData = new FormData();
@@ -165,39 +195,43 @@ export default {
           return formData;
     },
     addForm(e){
-        // e.preventDefault();
+        e.preventDefault();
+        this.readyFormLoading = true;
         this.errors = [];
         this.error = {};
+        this.errPass = [];
         fetch('/api/client/forms', {
             method: 'post',
             credentials: "same-origin",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': this.csrf
+                'X-Requested-With': 'XMLHttpRequest'
             },
             body: JSON.stringify(this.form)
         })
         .then(res => res.json())
         .then(res => {
-           console.log(res)
+           if(res.response == 'success'){
+              this.readyFormLoading = false;
+             $('#modalPassword').modal('hide');
+             $('#modalSuccessForm').modal('show');
+            }
+           else this.catchError(res);
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(err =>  this.catchError(err))
     },
     catchError(res){
-            res.name ? (this.errors.push(res.name[0]) && (this.error.name = 'is-invalid')) : this.error.name = 'is-valid';
-            res.price ? (this.errors.push(res.price[0]) && (this.error.price = 'is-invalid')) : this.error.price = 'is-valid';
-            res.details ? (this.errors.push(res.details[0]) && (this.error.details = 'is-invalid')) : this.error.details = 'is-valid';
-            res.quantity ? (this.errors.push(res.quantity[0]) && (this.error.quantity = 'is-invalid')) : this.error.quantity = 'is-valid';
-            res.images ? (this.errors.push(res.images[0]) && (this.error.images = 'is-invalid')) : this.error.images = 'is-valid';
-            // res.images ? (this.errors.push(res.images[0]) && (this.error.images = 'is-invalid')) : this.error.images = 'is-valid';
+        this.readyFormLoading = false;
+        res.subject ? (this.errors.push(res.subject[0]) && (this.error.subject = 'is-invalid')) : this.error.subject = 'is-valid';
+        res.name ? (this.errors.push(res.name[0]) && (this.error.name = 'is-invalid')) : this.error.name = 'is-valid';
+        res.phone ? (this.errors.push(res.phone[0]) && (this.error.phone = 'is-invalid')) : this.error.phone = 'is-valid';
+        res.email ? (this.errors.push(res.email[0]) && (this.error.email = 'is-invalid')) : this.error.email = 'is-valid';
+        res.message ? (this.errors.push(res.message[0]) && (this.error.message = 'is-invalid')) : this.error.message = 'is-valid';
+        res.password ? (this.errPass.push(res.password[0]) && (this.error.password = 'is-invalid')) : this.error.password = 'is-valid';
+        if(this.errPass.length >= 1){
+        }else $('#modalPassword').modal('hide');
     },
-   },
-   components:{
-
    },
    props:{
      primaryColor : String,
@@ -205,10 +239,7 @@ export default {
      secondaryBg: String
    },
    mounted(){
-      $('#staticBackdrop').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-      });
-      console.log(this.csrf)
+      $('#modalSuccessForm').on('hidden.bs.modal', e => this.form = {subject: '',name: '',phone: '',email: '',message: '',password: ''});
    }
 }
 </script>
@@ -240,6 +271,42 @@ export default {
 
 .boxshadow{
     box-shadow: 1px 2px 5px rgb(137, 199, 230);
+}
+
+.overlayLoading{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index:9999;
+    border:none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.749);
+    div{
+        justify-content: center;
+        position: absolute;
+        align-items: center;
+        height: 100%;
+        width:100%;
+        margin: 0;
+        padding: 0;
+        img{
+          -webkit-animation:spin 2s linear infinite;
+          -moz-animation:spin 2s linear infinite;
+          animation:spin 2s linear infinite;
+        }
+        @-moz-keyframes spin {
+            100% { -moz-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes spin {
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform:rotate(360deg);
+            }
+        }
+    }
 }
 
 svg#freepik_stories-contact-us:not(.animated) .animable {opacity: 0;}svg#freepik_stories-contact-us.animated #freepik--Device--inject-10 {animation: 1.5s Infinite  linear wind;animation-delay: 1s;}svg#freepik_stories-contact-us.animated #freepik--character-1--inject-10 {animation: 1s 1 forwards cubic-bezier(.36,-0.01,.5,1.38) lightSpeedLeft;animation-delay: 0s;}svg#freepik_stories-contact-us.animated #freepik--character-2--inject-10 {animation: 1s 1 forwards cubic-bezier(.36,-0.01,.5,1.38) lightSpeedRight;animation-delay: 0s;}            @keyframes wind {                0% {                    transform: rotate( 0deg );                }                25% {                    transform: rotate( 1deg );                }                75% {                    transform: rotate( -1deg );                }            }                    @keyframes lightSpeedLeft {              from {                transform: translate3d(-50%, 0, 0) skewX(20deg);                opacity: 0;              }              60% {                transform: skewX(-10deg);                opacity: 1;              }              80% {                transform: skewX(2deg);              }              to {                opacity: 1;                transform: translate3d(0, 0, 0);              }            }                    @keyframes lightSpeedRight {              from {                transform: translate3d(50%, 0, 0) skewX(-20deg);                opacity: 0;              }              60% {                transform: skewX(10deg);                opacity: 1;              }              80% {                transform: skewX(-2deg);              }              to {                opacity: 1;                transform: translate3d(0, 0, 0);              }            }
