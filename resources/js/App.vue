@@ -9,27 +9,37 @@
        </div>
     </div>
     <div v-else>
+
        <Transition appear name="fade">
          <Navigation v-if="scrollDown"/>
        </Transition>
+
        <router-view></router-view>
+
+       <Footer   :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" />
+
     </div>
 
 </template>
 
 <script>
 import Navigation from './components/Navigation.vue';
+import Footer from './components/Footer.vue';
 export default {
     data(){
         return{
             loadingIcon : '<Zakerxa/>',
             loading : true,
             scrollPosition : '',
-            scrollDown : true
+            scrollDown : true,
+            primaryBg    : '#d6f7ff',
+            secondaryBg  : '#fff',
+            primaryColor : '#232',
         }
     },
     components:{
-      Navigation
+      Navigation,
+      Footer
     },
     created () {
       window.addEventListener('scroll', this.handleScroll);

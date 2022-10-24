@@ -14,7 +14,7 @@
 
           <div class="col-12 col-md-12 col-lg-4 text-md-start text-lg-center pb-4">
              <h3 class="pb-3 text-start text-lg-center underline">Message</h3>
-             <p class="">Thanks for visiting my website.That's all of my information & services.Come back to me again.</p>
+             <p class="">Thanks for visiting my portfolio site.That's all of my Information,Skills ,Contact & services.Come back to me again.</p>
              <p>Have a good day.</p>
           </div>
 
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div v-if="true" class="mapouter">
+    <div class="mapouter">
         <div class="gmap_canvas">
             <iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=16.788618,%2096.198985&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>

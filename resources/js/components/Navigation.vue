@@ -24,7 +24,7 @@
 
     <!-- NavBar Mobile -->
     <div class="offcanvas offcanvas-start bg-light h-100" tabindex="1" id="mobileDev">
-        <div class="d-md-block" style="min-height: 5px;background-color: #f00;"></div>
+        <div class="d-md-block" style="min-height: 5px;background-color: #d6f0ff;"></div>
         <div class="offcanvas-header p-3 border-bottom">
            <h2 class="text-dark d-md-none fw-bold m-0">{{title}} </h2>
            <div :style="navTran" :class="navIcon" style="font-size: 25px;" class="border-0 p-1" data-bs-toggle="offcanvas" data-bs-target="#mobileDev"></div>

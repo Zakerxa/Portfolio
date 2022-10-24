@@ -9,7 +9,7 @@
         <!-- Header -->
         <div data-aos="zoom-in" data-aos-offset="200" class="col-12 text-center pb-3 mt-3 pt-5">
            <h2 class="fw-bold underline">Are you still in here ! Right</h2>
-           <h4>That's a good time to know about me.</h4>
+           <h4>This is a good time to know about me.</h4>
         </div>
         <!-- Question & Answer -->
         <div class="col-12 col-md-10 col-lg-8 text-start position-relative">

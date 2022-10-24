@@ -19,12 +19,3 @@ Route::get('/{any}', function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Route::get('/items', [ProductController::class,'index']);
-
-// Route::prefix('/item')->group(function(){
-//    Route::post('/create',[ProductController::class,'store']);
-//    Route::post('/test',[ProductController::class,'test']);
-//    Route::put('/{id}',[ProductController::class,'update']);
-//    Route::delete('/{id}',[ProductController::class,'destroy']);
-// });

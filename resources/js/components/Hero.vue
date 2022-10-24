@@ -23,7 +23,7 @@
 
               <div data-aos="fade-left" data-aos-delay="800" class="text-center col-12" >
                   <h5 class="p-1 pt-sm-5 pt-md-4 pt-5 fw-bold text-start" style="letter-spacing:0.3px;">
-                    I am a BackEnd Web Developer with over 3 years of experience with PHP.I have acquired the skill necessary to build great websites.
+                    I am a BackEnd Web Developer with over 4 years of experience with PHP & VueJs.I have acquired the skill necessary to build great websites.
                   </h5>
                   <div @click="clickCvForm()" @mouseleave="btnMsg='CV Form'" @mouseover="btnMsg='Check it'" id="hero-btn">
                       <span>{{btnMsg}}</span>

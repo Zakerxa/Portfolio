@@ -2,10 +2,9 @@
  <div class="heroContainer" id="projects" :style="{'background':secondaryBg}">
 
     <div class="container-fluid pt-5">
+
       <div class="row align-items-center justify-content-center pt-5 pb-5" :style="{'color':primaryColor}" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
 
-
-        <!-- Header -->
         <div data-aos="zoom-in" data-aos-offset="200" class="col-12 text-center pb-4">
            <h2 class="fw-bold underline">Contact Form</h2>
         </div>
@@ -18,6 +17,8 @@
             <div>
 
                 <div class="row" :onload="checkingForm()">
+
+                <input type="hidden" name="" autocomplete="false">
 
                 <div class="col-12">
                    <div v-if="errors[0]" class="">
@@ -36,14 +37,14 @@
                     </select>
                  </div>
 
-                 <div class="col-5 mb-3">
+                 <div class="col-6 mb-3">
                    <label class="pb-1" for="floatingName">Full Name</label>
-                   <input type="text" v-model="form.name" :class="error.name" class="boxshadow form-control p-2" id="floatingName" placeholder="Your Full Name" autocomplete="off" required>
+                   <input type="text" v-model="form.name" :class="error.name" class="boxshadow form-control p-2" id="floatingName" placeholder="Enter Full Name" autocomplete="off" required>
                  </div>
 
-                 <div class="col-7 mb-3">
+                 <div class="col-6 mb-3">
                    <label class="pb-1" for="floatingPhoneNumber">Phone Number</label>
-                   <input type="number" v-model="form.phone" :class="error.phone" class="boxshadow form-control p-2" id="floatingPhoneNumber" placeholder="+95" autocomplete="off" required>
+                   <input type="tel" pattern="[0-9]" v-model="form.phone" :class="error.phone" class="boxshadow form-control p-2" id="floatingPhoneNumber" placeholder="09" autocomplete="off" required>
                  </div>
 
                  <div class="col-12 mb-3">
@@ -58,6 +59,7 @@
 
                   <div class="col-12">
                       <button @click="readyForm()" :disabled="readyBtn" class="btn readyFormBtn w-100">Ready Form</button>
+                      <small v-show="readyBtn" class="text-muted">{{formRequired}}</small>
                   </div>
 
                 </div>
@@ -129,15 +131,22 @@
             </div>
         </div>
 
-
       </div>
+
+
+      <div class="row justify-content-center pb-5">
+        <div class="col-12 col-md-12">
+             <ShowForm :parent="parentChange" />
+         </div>
+      </div>
+
     </div>
 
  </div>
 </template>
 
 <script>
-
+import ShowForm from '../client/Forms.vue';
 export default {
    data(){
     return{
@@ -147,18 +156,23 @@ export default {
         readyBtn       : true,
         disPassword    : true,
         readyFormLoading : false,
+        formRequired: 'Insert form correctly.',
         form:{
             subject : '',
-            name    : 'Zin Min Htet',
-            phone   : '09687717767',
-            email   : '@gmail.com',
-            message : 'Hello World',
+            name    : '',
+            phone   : '',
+            email   : '',
+            message : '',
             password: ''
         },
         errors : [],
         error  : {},
-        errPass: []
+        errPass: [],
+        parentChange : 0
     }
+   },
+   components:{
+    ShowForm
    },
    methods:{
     checkPass(e){
@@ -166,11 +180,26 @@ export default {
      else this.disPassword = true;
     },
     checkingForm(){
-       if(this.form.subject == '' || this.form.name.length <= 6 || this.form.phone.length <= 9 || this.form.message.length <= 10 || this.form.email.length <= 10) this.readyBtn = true;
+       if(this.form.subject == '' || this.form.name.length <= 4) {
+         this.readyBtn = true;
+         this.formRequired = 'Insert form correctly.';
+       }
+       else if(this.form.phone.length <= 9 || this.form.phone == ''){
+         this.readyBtn = true;
+         this.formRequired = 'Please insert your phone number.';
+       }
+       else if(this.form.email.length <= 13 || this.form.email == ''){
+         this.readyBtn = true;
+         this.formRequired = 'Please insert your email account.';
+       }
+       else if(this.form.message.length <= 10 || this.form.message == ''){
+         this.readyBtn = true;
+         this.formRequired = 'Message at least 10 characters long.'
+       }
        else this.readyBtn = false;
     },
-    onChange(event) {
-        this.form.subject = event.target.value;
+    onChange(e) {
+        this.form.subject = e.target.value;
     },
     eyecheck(){
        this.checkState = !this.checkState;
@@ -200,7 +229,7 @@ export default {
         this.errors = [];
         this.error = {};
         this.errPass = [];
-        fetch('/api/client/forms', {
+        fetch('/api/user/forms', {
             method: 'post',
             credentials: "same-origin",
             headers: {
@@ -214,6 +243,7 @@ export default {
         .then(res => {
            if(res.response == 'success'){
               this.readyFormLoading = false;
+              this.parentChange++;
              $('#modalPassword').modal('hide');
              $('#modalSuccessForm').modal('show');
             }
@@ -222,6 +252,7 @@ export default {
         .catch(err =>  this.catchError(err))
     },
     catchError(res){
+        console.log(res);
         this.readyFormLoading = false;
         res.subject ? (this.errors.push(res.subject[0]) && (this.error.subject = 'is-invalid')) : this.error.subject = 'is-valid';
         res.name ? (this.errors.push(res.name[0]) && (this.error.name = 'is-invalid')) : this.error.name = 'is-valid';

@@ -13,20 +13,17 @@
 
       <ContactMe :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
-      <Footer   :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
-
   </div>
 </template>
 
 <script>
-import Upload from './Upload.vue';
-import Hero from './Hero.vue';
-import Skills from './Skills.vue';
-import About from './About.vue';
-import Services from './Service.vue';
-import Projects from './Projects.vue';
-import ContactMe from './ContactMe.vue';
-import Footer from './Footer.vue';
+import Hero from './components/Hero.vue';
+import Skills from './components/Skills.vue';
+import About from './components/About.vue';
+import Services from './components/Service.vue';
+import Projects from './components/Projects.vue';
+import ContactMe from './components/ContactMe.vue';
+import Footer from './components/Footer.vue';
 
 export default {
    data(){
@@ -44,14 +41,7 @@ export default {
     Services,
     Projects,
     ContactMe,
-    Footer,
-    Upload
-   },
-   methods:{
-
-   },
-   mounted(){
-
+    Footer
    }
 }
 </script>

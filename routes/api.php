@@ -19,8 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/clients',[ContactFormController::class,'index']);
+Route::get('/users',[ContactFormController::class,'show']);
 
-Route::prefix('/client')->group(function(){
+Route::prefix('/user')->group(function(){
     Route::post('/forms',[ContactFormController::class,'store']);
+    Route::post('forms/delete', [ContactFormController::class,'deleteform']);
 });

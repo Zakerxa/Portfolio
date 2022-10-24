@@ -3,12 +3,22 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [{
         path: "/",
         name: "Home",
-        component: require('./components/Home.vue').default
+        component: require('./Home.vue').default
     },
     {
         path: "/about",
         name: "About",
-        component: require('./components/About.vue').default
+        component: require('./routeComponents/about.vue').default
+    },
+    {
+        path: "/service",
+        name: "Service",
+        component: require('./components/Service.vue').default
+    },
+    {
+        path: "/contact",
+        name: "Contact",
+        component: require('./components/ContactMe.vue').default
     },
     {
         path: "/:pathMatch(.*)*",

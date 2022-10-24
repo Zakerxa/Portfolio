@@ -1,11 +1,11 @@
 <template>
  <div class="heroContainer" :style="{'background':secondaryBg}">
     <div class="servicesBgCover" :style="{'background':primaryBg}"></div>
-    <div class="container pb-4">
+    <div class="container pb-4 pt-5">
       <div :style="{'color':primaryColor}" class="row justify-content-center align-items-center pb-5 pt-2" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
         <!-- Header -->
         <div class="col-12 text-center mt-5 pb-3 position-relative">
-           <h1 data-aos="zoom-in" class="fw-bold">My Services</h1>
+           <h2 data-aos="zoom-in" class="fw-bold">My Services</h2>
         </div>
 
         <!-- Services Card -->
