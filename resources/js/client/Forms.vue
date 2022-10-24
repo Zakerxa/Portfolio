@@ -1,7 +1,7 @@
 <template>
   <div class="container justify-content-center">
 
-    <h1 v-show="userData" class="mb-4">Requests</h1>
+    <h1 v-show="userData.length >= 1" class="mb-4">Requests</h1>
 
        <div v-for="(d,i) in userData" :key="i" class="position-relative pt-2">
          <i>{{i+1}}. </i>
@@ -108,7 +108,6 @@ export default {
     props: ['parent'],
     created(){
         this.startInit();
-        // this.parent ? this.parent.$on('reset',this.startInit) : '';
     },
     watch:{
         parent(newvalue,old){

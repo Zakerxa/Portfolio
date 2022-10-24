@@ -2,8 +2,8 @@
 
     <div v-if="loading" class="loading">
        <!-- Show Loading if Data not ready yet -->
-       <div class="row d-flex align-items-center" style="height:100vh;width:100vw;">
-           <div class="col-12 text-center">
+       <div class="row d-flex align-items-center p-0 m-0" style="height:100vh;width:100vw;">
+           <div class="col-12 text-center p-0">
                <h3 class="fw-bold">{{loadingIcon}}</h3>
            </div>
        </div>
@@ -58,7 +58,7 @@ export default {
     },
     mounted(){
        document.addEventListener('DOMContentLoaded', () => this.loading = false);
-       this.$nextTick(()=> console.log("Render has been loaded"));
+    //    this.$nextTick(()=> console.log("Render has been loaded"));
     }
 }
 </script>

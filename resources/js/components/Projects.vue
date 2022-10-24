@@ -72,7 +72,7 @@ export default {
             github: 'https://github.com/Zakerxa/Social-Media',
             liveDemo: 'https://media.zakerxa.com',
             language: ['PHP','VueJs','Javascript','Bootstrap'],
-            images:['/images/projects/socialMedia/socialMediaHome.png','/images/projects/socialMedia/socialMediaFri.png','/images/projects/socialMedia/socialMediaProfile.png','/images/projects/socialMedia/socialMediaComment.png'],
+            images:['/images/projects/socialMedia/socialMediaHome.png','/images/projects/socialMedia/socialMediaFri.png','/images/projects/socialMedia/socialMediaProfile.png'],
             details : 'This is Social Media like Facebook.You can create account and post ,reaction ,like & comment.'
         },
         {
@@ -81,7 +81,7 @@ export default {
             github: 'https://github.com/Zakerxa/Dhamma-Media-MP3',
             liveDemo: 'https://dhamma-zakerxa.vercel.app/',
             language: ['VueCli','Bootstrap'],
-            images:['/images/projects/dhamma/dhamma1.png','/images/projects/dhamma/dhamma2.png','/images/projects/dhamma/dhamma3.png','/images/projects/dhamma/dhamma4.png'],
+            images:['/images/projects/dhamma/dhamma1.png','/images/projects/dhamma/dhamma3.png'],
             details : 'Dhamma Media is a MP3 Web Application,But now this api is not working that\' is why you can\'t see & hear images & mp3.'
         },
         {
