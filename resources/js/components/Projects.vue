@@ -88,7 +88,7 @@ export default {
             id : 7,
             name : 'Login/Register',
             github: 'https://github.com/Zakerxa/PHP-LogIn-Register-Security',
-            liveDemo: 'https://code.zakerxa.com',
+            liveDemo: 'https://account.zakerxa.com',
             language: ['PHP','Bootstrap'],
             images:['/images/projects/login-register/login.png','/images/projects/login-register/register.png','/images/projects/login-register/success.png','/images/projects/login-register/authuser.png'],
             details : 'PHP Login / Register Security that can prevent you from attacking CSRF, XSS, SQL Injection & other.'

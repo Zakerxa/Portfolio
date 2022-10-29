@@ -13,13 +13,13 @@
         <div class="row justify-content-center" :style="{'color':primaryColor}">
 
           <div class="col-12 col-md-12 col-lg-4 text-md-start text-lg-center pb-4">
-             <h3 class="pb-3 text-start text-lg-center underline">Message</h3>
-             <p class="">Thanks for visiting my portfolio site.That's all of my Information,Skills ,Contact & services.Come back to me again.</p>
-             <p>Have a good day.</p>
+             <h3 class="pb-3 text-start text-lg-center underline fw-bold">Message</h3>
+             <p class="fw-bold mb-0">Thanks for visiting my portfolio site.That's all of my Information,Skills ,Contact & services.Come back to me again.</p>
+             <p class="fw-bold">Have a good day.</p>
           </div>
 
           <div class="col-12 col-md-6 col-lg-4 text-md-start text-lg-center order-1 order-lg-0 footerSocial pb-4">
-                <h3 class="pb-3 text-start text-lg-center underline">Social Link</h3>
+                <h3 class="pb-3 text-start text-lg-center underline fw-bold">Social Link</h3>
                 <div class="d-flex align-items-center">
                     <div v-for="social in socials" :key="social.link" class="d-inline text-center">
                        <a :href="social.link" target="_blank"><img :src="social.icon" alt=""></a>
@@ -28,8 +28,8 @@
             </div>
 
            <div class="col-12 col-md-6 col-lg-4 text-md-start text-lg-center order-0 order-lg-1 footerSocial pb-4">
-                <h3 class="pb-3 text-start text-lg-center underline">Contact Me</h3>
-                <div class="row justify-content-lg-end">
+                <h3 class="pb-3 text-start text-lg-center underline fw-bold">Contact Me</h3>
+                <div class="row justify-content-lg-end fw-bold">
                     <div class="col-3 text-start p-0">
                      <p> Location  </p>
                    </div>

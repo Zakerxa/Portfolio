@@ -11,12 +11,20 @@ class ContactForm extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    //Add extra attribute
     // This attribute will insert to database
     // protected $attributes = ['short_mail'];
 
     //Make it available in the json response
-    // protected $appends = ['short_mail'];
+    protected $appends = ['authMail'];
+
+
+    function scopeFilter($query, $filter)
+    {
+        $query->when($filter['search']??false, function ($query, $search) {
+            $query->where('name', 'LIKE', '%' . $search . '%')
+            ->orwhere('email','LIKE', '%' . $search . '%');
+        });
+    }
 
     public function getCreatedAtAttribute($date)
     {
@@ -29,6 +37,10 @@ class ContactForm extends Model
         $start = substr($this->attributes['email'],0,3);
         $end = substr($this->attributes['email'],-10,10);
         return $start.'...'.$end;
+    }
+
+    public function getauthMailAttribute(){
+     return $this->attributes['email'];
     }
 
     public function getNameAttribute($value){

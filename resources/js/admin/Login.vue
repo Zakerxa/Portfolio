@@ -1,0 +1,110 @@
+<template>
+    <div class="container pt-5">
+        <div class="row pt-5 justify-content-center">
+            <div class="col-11 col-md-6 col-lg-4 mt-5 mb-5 pt-4 pb-5 card">
+                <h3 class="fw-bold text-center mb-3">Login</h3>
+                <small class="text-danger pb-2">{{error}}</small>
+                <div class="form-floating mb-3">
+                    <input
+                        type="email"
+                        v-model="admin.email"
+                        class="form-control"
+                        id="floatingInput"
+                        autocomplete="off"
+                        autofocus="false"
+                        placeholder="name@example.com"
+                        required
+                    />
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input
+                        type="password"
+                        v-model="admin.password"
+                        class="form-control"
+                        id="floatingPassword"
+                        autocomplete="off"
+                        autofocus="false"
+                        placeholder="Password"
+                        required
+                    />
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="pt-4 text-center">
+                    <button
+                        @click="login()"
+                        class="btn fw-bold w-100 btn-primary"
+                    >
+                        Login
+                    </button>
+                </div>
+                <div class="pt-4 text-center">
+                    <button
+                        @click="register()"
+                        class="btn fw-bold w-100 btn-dark"
+                    >
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            admin: {
+                email: 'a@gmail.com',
+                password: '123'
+            },
+            error : ''
+        }
+    },
+    methods: {
+        login () {
+            fetch('api/admin/login',{
+                method : 'post',
+                headers: {
+                  Accept : 'application/json',
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(this.admin)
+            })
+            .then(res => res.json())
+            .then(res => {
+               if(res.response == 'success')  this.authRedirect(res.token);
+               else this.error = 'Incorrect Credentials';
+            })
+            .catch(error => this.clearData(error))
+        },
+        clearData(e){
+            if(e) console.log(e);
+            this.admin.email = '';
+            this.admin.password = '';
+            this.error = '';
+        },
+        register () {
+            this.$http
+            .post('api/admin/register', this.admin)
+            .then(res => {
+                if (res.data.response == 'success') {
+                    this.admin.email = ''
+                    this.admin.password = ''
+                }
+            })
+            .catch(error => console.log('This is error', error))
+        },
+        authRedirect (token) {
+            localStorage.setItem('bearer', token);
+            if(localStorage.getItem('bearer')){
+              this.clearData();
+              this.$router.push(this.$route.query.redirect || '/zakerxa')
+            }
+        }
+    }
+}
+</script>
+
+<style></style>

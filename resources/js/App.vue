@@ -10,13 +10,19 @@
     </div>
     <div v-else>
 
-       <Transition appear name="fade">
-         <Navigation v-if="scrollDown"/>
-       </Transition>
+      <div v-if="admin">
+        <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
+        <!-- <adminlteNavSlidebarVue :admin="admin"/> -->
+      </div>
+      <div v-else>
+        <Transition appear name="fade">
+          <Navigation v-if="scrollDown"/>
+        </Transition>
+      </div>
 
-       <router-view></router-view>
+      <router-view/>
 
-       <Footer   :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" />
+       <!-- <Footer :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" /> -->
 
     </div>
 
@@ -35,6 +41,7 @@ export default {
             primaryBg    : '#d6f7ff',
             secondaryBg  : '#fff',
             primaryColor : '#232',
+            admin : ''
         }
     },
     components:{
@@ -56,9 +63,14 @@ export default {
         this.scrollPosition = currentScrollPosition;
        }
     },
+    watch:{
+      $route (to, from){
+          this.admin = localStorage.getItem('bearer');
+      }
+    },
     mounted(){
        document.addEventListener('DOMContentLoaded', () => this.loading = false);
-    //    this.$nextTick(()=> console.log("Render has been loaded"));
+       this.$nextTick(()=> console.log("Render has been loaded"));
     }
 }
 </script>
