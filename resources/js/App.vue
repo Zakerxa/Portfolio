@@ -13,16 +13,20 @@
       <div v-if="admin">
         <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
         <!-- <adminlteNavSlidebarVue :admin="admin"/> -->
+        <router-view/>
+
       </div>
       <div v-else>
         <Transition appear name="fade">
           <Navigation v-if="scrollDown"/>
         </Transition>
+
+        <router-view/>
+
+        <Footer :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" />
       </div>
 
-      <router-view/>
 
-       <!-- <Footer :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" /> -->
 
     </div>
 

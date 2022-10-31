@@ -13,14 +13,14 @@
         </div>
         <!-- Question & Answer -->
         <div class="col-12 col-md-10 col-lg-8 text-start position-relative">
-           <div class="pt-3" v-for="about in abouts" :key="about.id" data-aos="fade-left" data-aos-offset="180">
+           <div class="pt-3" v-for="about in abouts" :key="about.id" data-aos="fade-left" data-aos-duration="700" data-aos-offset="180">
              <h4 class="fw-bold"><font-awesome-icon :icon="`fa-solid ${about.icon}`"/> {{about.qus}}</h4>
              <p class="fw-bold p-2" v-html="about.ans"></p>
              <div style="border:2px solid #fff;" class="w-100"></div>
            </div>
         </div>
 
-        <h3 class="pt-4 pb-5" data-aos="fade-left" data-aos-offset="100">If you still want to know about me, <router-link to="/about" class="text-dark">Read More . . .</router-link> </h3>
+        <h3 class="pt-4 pb-5" data-aos="fade-left" data-aos-duration="700" data-aos-offset="100">If you still want to know about me, <router-link to="/about" class="text-dark text-decoration-none">Read More . . .</router-link> </h3>
       </div>
     </div>
 

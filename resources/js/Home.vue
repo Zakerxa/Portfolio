@@ -3,13 +3,13 @@
 
       <Hero     :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
-      <Skills   :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" progress-color="#a3dceb"/>
+      <Skills msg="Here is my skill"  :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" progress-color="#a3dceb"/>
 
       <About    :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
       <Projects :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" servicesCard="rgb(229, 255, 254)"/>
 
-      <Services :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" :servicesCard="primaryBg"/>
+      <Services :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" :servicesCard="serviceCard"/>
 
       <ContactMe :secondary-bg="secondaryBg" :primary-color="primaryColor"/>
 
@@ -31,6 +31,7 @@ export default {
       primaryBg    : '#d6f7ff',
       secondaryBg  : '#fff',
       primaryColor : '#232',
+      serviceCard  : '#ecfbff'
 
     }
    },
@@ -42,6 +43,9 @@ export default {
     Projects,
     ContactMe,
     Footer
+   },
+   mounted(){
+
    }
 }
 </script>
@@ -51,6 +55,10 @@ export default {
 *{
    font-family: sans-serif;
    background: #a3dceb;
+}
+
+.test{
+    background: #ecfbff;
 }
 
 </style>

@@ -24,6 +24,14 @@
                 </div>
             </div>
 
+            <div class="main-footer">
+                <div class="row justify-content-center">
+                     <div class="col-12 text-center pt-4 pb-4">
+                        <small class="text-muted">Copyright @2022 Zakerxa-Portfolio.All rights reserved.</small>
+                    </div>
+                </div>
+            </div>
+
         </div>
        </div>
     </div>
@@ -58,7 +66,7 @@ export default {
             });
         },
         searching(e){
-          this.search = e;
+          if(e) this.search = e;
         },
         reading(){
             this.$http.get('/api/clients').then( (response) => this.noti = response.data.noti);

@@ -92,7 +92,7 @@ export default {
             },
             {
                 icon : '/images/icon/linkedin.png',
-                link : 'https://linkedin.com/in/zaker-xa-681908253'
+                link : 'https://linkedin.com/in/zakerxa'
             },
             {
                 icon : '/images/icon/facebook.png',

@@ -5,7 +5,7 @@
       <div class="row justify-content-center align-items-center mt-md-4" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
           <div :style="{'color':primaryColor}" class="col-12 col-sm-11 col-md-6 col-lg-6 pt-5">
 
-              <figure data-aos="fade-down" data-aos-delay="300" class="text-md-start pt-4">
+              <figure data-aos="fade-down" data-aos-delay="500" class="text-md-start pt-4">
                     <h1 class="fw-bold" style="font-size:35px">
                         Hello EveryOne !
                     </h1>
@@ -14,7 +14,7 @@
                     </figcaption>
               </figure>
 
-              <div data-aos="fade-left" data-aos-delay="500" class="row justify-content-center align-items-center d-md-none">
+              <div data-aos="fade-left" data-aos-delay="1000" data-aos-duration="1000" class="row justify-content-center align-items-center d-md-none">
                   <div class="col-10 col-sm-8 text-center">
                       <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
                       <div :style="imgShadow" class="heroimgShadowMobile"></div>
@@ -32,7 +32,7 @@
               </div>
 
           </div>
-          <div class="col-10 d-none d-md-block col-md-6 col-lg-5 align-self-center offset-lg-1" data-aos="fade-left">
+          <div class="col-10 d-none d-md-block col-md-6 col-lg-5 align-self-center offset-lg-1" data-aos-delay="1000" data-aos-duration="1000" data-aos="fade-left">
               <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate" draggable="false" src="/images/hero.png" class="heroImage" alt="">
               <div :style="imgShadow" class="heroimgShadow"></div>
           </div>
@@ -70,8 +70,8 @@ export default {
    },
    mounted(){
      setTimeout(() => {
-         this.imgRotate = `transition:transform 1s;transform: rotateX(0deg) rotateY(0deg);background:${this.primaryBg}`;
-         this.imgShadow = `transition:transform 1.2s;transform:rotateY(180deg);background:${this.primaryBg}`;
+         this.imgRotate = `transition:transform 2s;transform: rotateX(0deg) rotateY(0deg);background:${this.primaryBg}`;
+         this.imgShadow = `transition:transform 2s;transform:rotateY(180deg);background:${this.primaryBg}`;
      }, 700);
    }
 }

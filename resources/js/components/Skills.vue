@@ -4,13 +4,13 @@
     <div class="container">
       <div class="row align-items-center" :style="{'color':primaryColor}" style="min-height:80vh;overflow-x: hidden; overflow-y: hidden;">
            <div data-aos="zoom-in" data-aos-offset="100" class="col-12 text-center mt-5">
-              <h2 class="fw-bold underline">How about your skill ?</h2>
+              <h2 class="fw-bold underline">{{msg}}</h2>
            </div>
 
            <div class="col-12 col-lg-11 position-relative pt-5">
                 <h3 data-aos="zoom-out" data-aos-offset="150">Language and Framework</h3>
                 <div class="row">
-                  <div data-aos="fade-right" data-aos-offset="150" v-for="skill in skills" :key="skill.id" class="mt-4 col-12 col-sm-11 col-md-6">
+                  <div data-aos="fade-right" data-aos-duration="700" data-aos-offset="150" v-for="skill in skills" :key="skill.id" class="mt-4 col-12 col-sm-11 col-md-6">
                     <b>{{skill.language}}</b>
                     <div class="progress mt-2" style="box-shadow: 1px 2px 5px rgb(125, 199, 236);">
                       <div class="progress-bar fw-bold" role="progressbar" :style="{'width':skill.level+'%','background':progressColor}" :aria-label="skill.language" :aria-valuenow="skill.level" aria-valuemin="0" aria-valuemax="100">{{skill.level}} %</div>
@@ -61,6 +61,7 @@ export default {
      progressColor : String,
      primaryBg : String,
      secondaryBg:String,
+     msg : String
    }
 }
 </script>

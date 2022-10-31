@@ -81,6 +81,16 @@ class AuthController extends Controller
         return response()->json(['response'=>'No Data Found']);
     }
 
+    public function destory($id){
+      try {
+        $ids = explode(",", $id);
+        ContactForm::whereIn('id', $ids)->delete();
+        return response()->json(['response'=>'success']);
+      } catch (\Throwable $th) {
+        return response()->json($th);
+      }
+    }
+
     public function logout(Request $request)
     {
         // Revoke the token that was used to authenticate the current request...

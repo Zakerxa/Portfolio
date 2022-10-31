@@ -24,6 +24,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::get('/clients',[AuthController::class,'index']);
     Route::post('/clients/read/{id}',[AuthController::class,'read']);
     Route::get('/search',[AuthController::class,'search']);
+    Route::post('/delete/{id}',[AuthController::class,'destory']);
     Route::get('/user', function() {
        return Auth::user()?? 'Logout User';
     });
