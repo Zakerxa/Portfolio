@@ -20,7 +20,7 @@
             <!-- Contect -->
             <div class="content-wrapper">
                 <div class="content-header">
-                   <adminlteContent @reading="reading" :search="search"/>
+                   <Dashboard @searchOver="searchOver" @reading="reading" :search="search"/>
                 </div>
             </div>
 
@@ -42,19 +42,20 @@
 
 <script>
 import adminlteNavSlider from './adminlteNavSlider.vue';
-import adminlteContent from './Home.vue'
+import Dashboard from './Dashboard.vue'
 export default {
     data () {
         return {
             loadingIcon : '<Hello Zakerxa/>',
             adminLoading : true,
             search       : '',
-            noti         : 0
+            noti         : 0,
+            searchend    : '',
         }
     },
     components:{
         adminlteNavSlider,
-        adminlteContent
+        Dashboard
     },
     methods: {
         logout () {
@@ -66,9 +67,14 @@ export default {
             });
         },
         searching(e){
-          if(e) this.search = e;
+          this.search = e
+        },
+        searchOver(){
+          // Refresh the search key
+          this.search = '';
         },
         reading(){
+            // Accepting reading cause of noti change
             this.$http.get('/api/clients').then( (response) => this.noti = response.data.noti);
         }
     },

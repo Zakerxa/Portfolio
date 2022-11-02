@@ -13,11 +13,11 @@ use Illuminate\Validation\Rule as ValidationRule;
 class AuthController extends Controller
 {
 
-    protected $listen = [
-        'Illuminate\Auth\Events\Logout' => [
-            App\Listeners\DeleteUserAccessTokens::class,
-        ],
-    ];
+    // protected $listen = [
+    //     'Illuminate\Auth\Events\Logout' => [
+    //         App\Listeners\DeleteUserAccessTokens::class,
+    //     ],
+    // ];
 
     public function register(Request $request)
     {

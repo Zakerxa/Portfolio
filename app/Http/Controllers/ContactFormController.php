@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormsMail;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class ContactFormController extends Controller
 {
 
     public function index(Request $request){
-      $forms = ContactForm::OrderBy('id','desc')->paginate($request->per_page??5);
-      return response()->json($forms);
-    }
-
-    public function show(Request $request){
         $forms = ContactForm::select('id','name','email','subject','created_at')->OrderBy('id','desc')->paginate($request->per_page??5);
         return response()->json($forms);
     }
@@ -60,7 +57,10 @@ class ContactFormController extends Controller
 
         $inputProduct['token'] = $slug;
 
-        ContactForm::create($inputProduct);
+        $client = ContactForm::create($inputProduct);
+        if($client){
+            Mail::to($client->authMail)->send(new ContactFormsMail($client));
+        }
 
         return response()->json(['response' => 'success']);
 

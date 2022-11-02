@@ -56,8 +56,8 @@ export default {
     data () {
         return {
             admin: {
-                email: 'a@gmail.com',
-                password: '123'
+                email: '',
+                password: ''
             },
             error : ''
         }

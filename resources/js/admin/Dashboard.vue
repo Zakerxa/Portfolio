@@ -2,14 +2,20 @@
     <div class="container-fluid">
         <div class="row">
             <h3 class="p-3 pl-0">Dashboard</h3>
+        </div>
+        <div class="row" v-show="removeIds.length">
             <div class="col">
-              <button class="btn btn-outline-dark" @click="selectAllForms()">{{selectAll ? 'Deselect' : 'Select'}} All</button>
+                <button class="btn btn-sm btn-outline-dark" @click="selectAllForms()">{{selectAll ? 'Deselect' : 'Select'}} All</button>
             </div>
-            <div class="col text-end" v-show="delIcon.length">
-              <button class="btn btn-outline-danger" @click="delForms">Delete</button>
+            <div class="col">
+                <button class="btn btn-sm btn-outline-primary ml-1">{{removeIds.length ? 'Selected ' + removeIds.length : ''}}</button>
+            </div>
+            <div class="col text-end">
+              <button class="btn btn-sm btn-outline-danger" @click="delForms">{{removeIds.length >= 2 ? 'Delete All' : 'Delete'}}</button>
             </div>
         </div>
 
+        <!-- Reading Components -->
         <div  v-if="reading" class="row justify-content-center">
             <div class="col-12 text-start">
 
@@ -46,34 +52,42 @@
 
         </div>
 
+        <!-- All Forms Data -->
         <div v-else class="row">
 
-            <div class="col-12 border-bottom mailcontainer" v-for="(form, i) in forms" :key="i">
-                <div class="form-check">
-                    <input class="form-check-input mt-3" type="checkbox"
-                    @change="check($event)"
-                    :value="form.id"
-                    :id="form.id">
-                    <div @click="read(form.id)" class="border-bottom p-2 pt-3">
-                        <div class="fw-bold ">
-                            <span v-if="form.subject == 1">Recommendation</span>
-                            <span v-if="form.subject == 2">Discussion</span>
-                            <span v-if="form.subject == 3">Hire</span>
-                            <span v-if="form.subject == 4">Testing</span>
-                            <small class="badge badge-danger ml-2"> {{(form.read==0)? 'New' : ''}}</small>
-                            <small class="float-end text-muted">{{form.created_at}}</small>
-                        </div>
-                        <div class="card-body p-1">
-                            <div class="row">
-                                <div class="col-12 col-md-5">
-                                   Name : <span class="fw-bold">{{form.name}}</span>
-                                </div>
-                                <div class="col-12 col-md-7 order-1">
-                                    E-Mail :
-                                    <span class="fw-bold">{{ form.authMail }}</span>
-                                </div>
-                                <div class="d-none d-md-block col-7 text-center ordre-0">
-                                   Tel : <span>{{form.phone}}</span>
+            <div v-if="forms.length >= 1" class="position-relative">
+                <div v-show="readyFormLoading" class="overlayLoading">
+                   <div class="row">
+                     <img src="/images/icon/loading.png" style="width:80px;" alt="">
+                   </div>
+                </div>
+                <div class="col-12 border-bottom mailcontainer" v-for="(form, i) in forms" :key="i">
+                    <div class="form-check">
+                        <input class="form-check-input mt-3" type="checkbox"
+                        @change="check($event)"
+                        :value="form.id"
+                        :id="form.id">
+                        <div @click="read(form.id)" class="border-bottom p-2 pt-3">
+                            <div class="fw-bold ">
+                                <span v-if="form.subject == 1">Recommendation</span>
+                                <span v-if="form.subject == 2">Discussion</span>
+                                <span v-if="form.subject == 3">Hire</span>
+                                <span v-if="form.subject == 4">Testing</span>
+                                <small class="badge badge-danger ml-2"> {{(form.read==0)? 'New' : ''}}</small>
+                                <small class="float-end text-muted">{{form.created_at}}</small>
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                       Name : <span class="fw-bold">{{form.name}}</span>
+                                    </div>
+                                    <div class="col-12 col-md-7 order-1">
+                                        E-Mail :
+                                        <span class="fw-bold">{{ form.authMail }}</span>
+                                    </div>
+                                    <div class="d-none d-md-block col-7 text-center ordre-0">
+                                       Tel : <span>{{form.phone}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -81,6 +95,13 @@
                 </div>
             </div>
 
+            <!-- No Data Found -->
+            <div class="col-12 text-center p-3" v-else>
+                <h3 class="pt-5">No Data Found {{search}}</h3>
+                <button v-show="removeIds.length" @click="searchOver" class="btn btn-sm btn-outline-dark mt-5">Go Back</button>
+            </div>
+
+            <!-- Pagination -->
            <div class="col-12 pt-3 text-center">
               <vue-pagination @event="vuePaginate" :meta-data="paginations" :onSides="1"></vue-pagination>
            </div>
@@ -95,12 +116,15 @@ export default {
     data () {
         return {
             endpoint    : 'api/clients?page=',
-            perPage     : [4],/* default path => '&per_page=' (Or) change [2,'&UrPath='] */
+            perPage     : [5],/* default path => '&per_page=' (Or) change [2,'&UrPath='] */
             paginations : {},
             forms: [],
             reader : [],
             reading : false,
             current : null,
+            vsearch : '',
+
+            readyFormLoading : false,
 
             selectAll: false,
             removeIds: [],
@@ -117,28 +141,40 @@ export default {
     methods: {
         vuePaginate(e){
           this.current = e;
+          console.log(this.current)
           e ? this.startInit(e[0]+e[1]) : this.startInit();
         },
         startInit(e){
-          // If somethng is change refresh checkbox
           let endpoint = e??(this.perPage[1]??'&per_page=')+this.perPage[0];
-          this.getPaginateWithUsers(endpoint + (this.search ? '&search='+this.search :'')).then(res=>this.insertData(res));
-
+          this.getPaginateWithUsers(endpoint + (this.vsearch ? '&search='+this.vsearch :'')).then(res=>this.insertData(res));
         },
         insertData(res){
+            console.log(res);
+          //  If something is change Reselect All check
+          if(this.removeIds.length >= 1 && this.selectAll)this.selectAllForms();
+          // If something is change refresh checkbox
           this.checkBoxDef();
-          if(res.data.length >= 1) this.forms = res.data;
-          else  {
-            this.current = [this.current[0] - 1,this.current[1]]
-            this.vuePaginate(this.current??null);
+          // When you delete all checkbox last pagination that will refetch data back
+          if((!this.vsearch) && (!res.data.length)) {
+            console.log("No search & Data");
+            if(!this.current) return ;
+            if((this.current[0]-1)) this.vuePaginate([this.current[0] - 1,this.current[1]]);
           }
+
+          this.vsearch = '';
+          this.forms = res.data;
           this.paginations = {
-             current_page : res.current_page,
-             last_page : res.last_page,
-             prev_page_url : res.prev_page_url,
-             next_page_url : res.next_page_url,
-             per_page      : this.perPage
-          }
+               current_page : res.current_page,
+               last_page : res.last_page,
+               prev_page_url : res.prev_page_url,
+               next_page_url : res.next_page_url,
+               per_page      : this.perPage
+           }
+          this.readyFormLoading = false;
+        },
+        searchOver(){
+            this.vuePaginate(this.current??null);
+            this.$emit('searchOver');
         },
         check (e) {
           this.$nextTick(() => {
@@ -182,11 +218,11 @@ export default {
         },
         delForms(){
           if(this.removeIds.length >= 1 && confirm('Are you sure to delete?')){
+            this.readyFormLoading = true;
             this.$http.post('api/delete/'+this.removeIds)
             .then(res=>{
               if(res.data.response == 'success'){
-                  console.log(res.data,this.current);
-                  this.vuePaginate(this.current??null);
+                this.vuePaginate(this.current??null);
               }
             })
             .catch(err=>console.log("Error",err));
@@ -199,6 +235,11 @@ export default {
             .catch(err => console.log(err))
         },
         read(e){
+            //  If something is change Reselect All check
+            if(this.removeIds.length >= 1 && this.selectAll)this.selectAllForms();
+            // If something is change refresh checkbox
+            this.checkBoxDef();
+            // Reading Forms
             this.forms.find(res=>{
                 if(res.id == e){
                     this.reader = res;
@@ -216,7 +257,8 @@ export default {
     },
     watch:{
       search(newvalue,old){
-        this.startInit();
+        this.vsearch = newvalue;
+        this.vuePaginate(this.current??null);
         return newvalue;
       }
     },
@@ -226,8 +268,44 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .mailcontainer{
     cursor: pointer;
 }
+.overlayLoading{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index:9999;
+    border:none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.749);
+    div{
+        justify-content: center;
+        position: absolute;
+        align-items: center;
+        height: 100%;
+        width:100%;
+        margin: 0;
+        padding: 0;
+        img{
+          -webkit-animation:spin 2s linear infinite;
+          -moz-animation:spin 2s linear infinite;
+          animation:spin 2s linear infinite;
+        }
+        @-moz-keyframes spin {
+            100% { -moz-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes spin {
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform:rotate(360deg);
+            }
+        }
+    }
+}
+
 </style>
