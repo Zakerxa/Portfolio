@@ -157,6 +157,7 @@ export default {
     methods: {
         logout () {
             this.$http('api/logout').then(res => {
+                console.log(res.data)
                 if (res.data.response == 'logout') {
                     localStorage.removeItem('bearer')
                     this.$router.push(this.$route.query.redirect || '/login')

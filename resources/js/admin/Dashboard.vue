@@ -46,10 +46,12 @@
                 </div>
             </div>
 
-            <div class="col-12 text-center pt-4">
-               <p @click="reading=false;vuePaginate(current??null)" class="btn btn-outline-primary">Go Back</p>
+            <div class="col text-center pt-4">
+               <p @click="reading=false;vuePaginate(current??null)" class="btn btn-sm btn-outline-primary">Go Back</p>
             </div>
-
+            <div class="col text-center pt-4">
+               <p @click="showMailModal(reader)" class="btn btn-sm btn-outline-primary">Reply Mail</p>
+            </div>
         </div>
 
         <!-- All Forms Data -->
@@ -107,10 +109,30 @@
            </div>
         </div>
 
+        <!-- Modal SuccessForm -->
+        <div class="col-12">
+           <div class="modal fade" id="mailSuccess" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content boxshadow border-0">
+                <div class="modal-header">
+                  <h3 class="modal-title fs-5 fw-bold" style="letter-spacing:1px;" id="staticBackdropLabel">
+                    <font-awesome-icon icon="fa-solid fa-check-circle" class="text-success" />  Mail Sent
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <SendMailFormsVue :currentMail="JSON.parse(JSON.stringify(reader))" :adminMail="mail" @mailSent="mailSent"/>
+        </div>
     </div>
 </template>
 
 <script>
+
+import SendMailFormsVue from './SendMailForms.vue';
 import { VuePagination } from '@zakerxa/vue-laravel-pagination';
 export default {
     data () {
@@ -128,11 +150,13 @@ export default {
 
             selectAll: false,
             removeIds: [],
-            delIcon  : []
+            delIcon  : [],
+            // Mailing System
         }
     },
     components:{
-      VuePagination
+      VuePagination,
+      SendMailFormsVue
     },
     props:['search'],
     created(){
@@ -182,7 +206,6 @@ export default {
             if(e.target.checked)this.removeIds.push(parseInt(id));
             else this.removeIds.remove(parseInt(id));
             this.delIcon = this.removeIds;
-            console.log(this.removeIds);
           });
         },
         checkBoxDef(e,ctn){
@@ -253,6 +276,13 @@ export default {
                 }
                 else return null;
             });
+        },
+        showMailModal(e){
+            $('#sendMailModal').modal('show');
+        },
+        mailSent(){
+            $('#mailSuccess').modal('show');
+            setTimeout(() =>  $('#mailSuccess').modal('hide'), 2000);
         }
     },
     watch:{
@@ -263,7 +293,7 @@ export default {
       }
     },
     mounted () {
-
+      console.log(this.token)
     }
 }
 </script>

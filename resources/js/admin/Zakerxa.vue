@@ -79,7 +79,6 @@ export default {
         }
     },
     created () {
-        this.$http.get('/api/user').then( (response) => this.admin = response.data);
         this.$http.get('/api/clients').then( (response) => this.noti = response.data.noti);
     },
     mounted () {

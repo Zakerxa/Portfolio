@@ -1,4 +1,7 @@
 <template>
+    <Transition appear name="fade">
+        <Navigation v-if="scrollDown"/>
+    </Transition>
  <div class="heroContainer" :style="{'background':primaryBg}">
 
     <div class="aboutbgCover" :style="{'background':secondaryBg}"></div>

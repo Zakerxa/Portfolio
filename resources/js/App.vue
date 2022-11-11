@@ -12,7 +12,6 @@
 
       <div v-if="admin">
         <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
-        <!-- <adminlteNavSlidebarVue :admin="admin"/> -->
         <router-view/>
 
       </div>
@@ -69,7 +68,7 @@ export default {
     },
     watch:{
       $route (to, from){
-          this.admin = localStorage.getItem('bearer');
+        this.admin = localStorage.getItem('bearer');
       }
     },
     mounted(){

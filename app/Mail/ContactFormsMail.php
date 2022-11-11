@@ -31,6 +31,6 @@ class ContactFormsMail extends Mailable
     {
         return $this->view('mail.contactMail',[
             'client' => $this->client
-        ]);
+        ])->subject('Contact Forms');
     }
 }

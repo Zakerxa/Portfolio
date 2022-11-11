@@ -1,7 +1,7 @@
 require('bootstrap')
 import { createApp } from 'vue';
 import App from "./App.vue";
-
+import CKEditor from '@ckeditor/ckeditor5-vue';
 // import Router
 import router from './router';
 
@@ -10,15 +10,14 @@ import authorize from './authorize';
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
-
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 /* import specific icons */
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCross } from '@fortawesome/free-solid-svg-icons';
+import { faMailForward } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
@@ -35,19 +34,30 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 /* add icons to the library */
-library.add(faCircleLeft, faCross, faSignOut, faBell, faBars, faHistory, faCheckCircle, faEye, faEyeSlash, faGithub, faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop)
+library.add(faMailForward, faCircleLeft, faCross, faSignOut, faBell, faBars, faHistory, faCheckCircle, faEye, faEyeSlash, faGithub, faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop)
 
 // AOS Library
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-const app = createApp(App).use(router);
+const app = createApp(App).use(CKEditor).use(router);
+
+
+app.config.errorHandler = (err) => {
+    /* handle error */
+    console.log(err);
+}
+
 // Create Global Vue Property
 const global = app.config.globalProperties;
 // Define Global Property
+global.csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
 global.token = localStorage.getItem('bearer');
+global.mail = 'admin@portfolio.zakerxa.com';
 global.$http = authorize;
+
+
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');
 

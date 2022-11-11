@@ -6,18 +6,11 @@ use App\Models\ContactForm;
 use App\Models\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
-use  Illuminate\Auth\RequestGuard;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule as ValidationRule;
 
 class AuthController extends Controller
 {
-
-    // protected $listen = [
-    //     'Illuminate\Auth\Events\Logout' => [
-    //         App\Listeners\DeleteUserAccessTokens::class,
-    //     ],
-    // ];
 
     public function register(Request $request)
     {
@@ -38,6 +31,7 @@ class AuthController extends Controller
             return response()->json(['response' => 'success']);
         } else return response()->json(['response' => 'Error Something Wrong']);
     }
+
     public function login(Request $request)
     {
 
@@ -70,7 +64,6 @@ class AuthController extends Controller
         return response()->json(['data'=>$form,'noti'=>$noti]);
     }
 
-
     public function read($id){
         $form = ContactForm::find($id);
         if($form){
@@ -79,6 +72,26 @@ class AuthController extends Controller
             return response()->json(['response'=>'success']);
         }
         return response()->json(['response'=>'No Data Found']);
+    }
+
+    public function sendmail(Request $request){
+        try {
+            $valid = $request->validate([
+                'title' => 'required|min:3|max:100',
+                'name' => 'required|min:3|max:100',
+                'email' => 'required|email:rfc,dns|max:255',
+                'subject' => 'required|min:5|max:200',
+                'adminMail' => 'required',
+                'body' => 'required|min:5'
+            ]);
+        } catch (ValidationException $th) {
+            return $th->validator->errors();
+        }
+        //Use the create file as view for Mail function and send the email
+        Mail::send('mail.sendMail',['data' => $valid],function($message) use ($valid) {
+            $message->to( $valid['email'], $valid['name'])->from($valid['adminMail'],$valid['title'])->subject($valid['subject']);
+        });
+        return response()->json(['response' => 'success']);
     }
 
     public function destory($id){

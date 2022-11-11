@@ -23,10 +23,7 @@ const routes = [{
     {
         path: "/login",
         name: "Login",
-        component: require('./admin/Login.vue').default,
-        meta: {
-            protect: false
-        }
+        component: require('./admin/Login.vue').default
     },
     {
         path: "/test",
@@ -63,30 +60,14 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const auth = localStorage.getItem('bearer');
-    if (to.name == 'Login' && auth) {
+    if (to.name == 'Login' && auth)
         next({ path: '/zakerxa' })
-    } else if (to.name == 'Register' && auth) {
+    else if ((to.name == 'Register' || to.name == 'Home' || to.name == 'About' || to.name == 'Service' || to.name == 'Contact') && auth)
         next({ path: '/zakerxa' })
-    } else if (to.meta.protect && !auth) {
+    else if (to.meta.protect && !auth)
         next({ path: '/login' })
-    } else {
+    else
         next()
-    }
 })
 
 export default router;
-
-// router.beforeEach((to, from, next) => {
-//     console.log(to.name);
-//     const auth = localStorage.getItem('bearer');
-//     console.log("Auth", auth)
-//     if (to.name == 'Login' && auth) {
-//         next({ path: '/zakerxa' })
-//     } else if (to.meta.protect && !auth) {
-//         console.log('Protected Route');
-//         next({ path: '/login' })
-//     } else {
-//         next()
-//     }
-
-// })

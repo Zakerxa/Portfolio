@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // Public Route
-
 Route::post('/admin/login',[AuthController::class,'login']);
 // Route::post('/admin/register',[AuthController::class,'register']);
 Route::get('/users',[ContactFormController::class,'index']);
@@ -23,6 +22,8 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/clients/read/{id}',[AuthController::class,'read']);
     Route::post('/delete/{id}',[AuthController::class,'destory']);
     Route::get('/logout',[AuthController::class,'logout']);
+    // Check Mail
+    Route::post('/clients/email',[AuthController::class,'sendmail']);
     // Admin Info
     Route::get('/user', function() {return Auth::user()?? 'Logout User';});
 });

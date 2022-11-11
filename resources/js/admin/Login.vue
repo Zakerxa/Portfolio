@@ -66,9 +66,12 @@ export default {
         login () {
             fetch('api/admin/login',{
                 method : 'post',
+                credentials: "same-origin",
                 headers: {
                   Accept : 'application/json',
-                    'Content-Type' : 'application/json'
+                    'Content-Type' : 'application/json',
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-Token": this.csrfToken
                 },
                 body: JSON.stringify(this.admin)
             })

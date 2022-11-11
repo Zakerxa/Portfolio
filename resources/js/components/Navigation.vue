@@ -2,7 +2,7 @@
  <div class="navigation">
      <div class="d-md-block" style="min-height: 5px;background-color: #232;"></div>
     <!-- Nav Bar Desktop -->
-    <nav class="navbar d-block navbar-expand-md navbar-light primaryColor border-bottom">
+    <div class="navbar d-block navbar-expand-md navbar-light primaryColor border-bottom">
         <div class="container-fluid">
 
             <h2 class="text-dark fw-bold m-0 p-2">{{title}} </h2>
@@ -20,7 +20,7 @@
             <div @click="navigatorClick()" :style="navTran" :class="navIcon" style="font-size: 25px;" class="navbar-toggler fw-bold border-0 p-1" data-bs-toggle="offcanvas" data-bs-target="#mobileDev"></div>
 
         </div>
-    </nav>
+    </div>
 
     <!-- NavBar Mobile -->
     <div class="offcanvas offcanvas-start bg-light h-100" tabindex="1" id="mobileDev">
@@ -107,6 +107,7 @@ export default {
     position:fixed;
     background: #fff;
     top: 0;
+    padding: 0;
     z-index: 9999;
     width: 100%;
 }
