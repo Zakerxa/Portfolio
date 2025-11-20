@@ -92,7 +92,10 @@ export default {
         this.modalMailSendLoading = true;
         this.$http.post('/api/clients/email',this.forms)
         .then(res=>{
-            if(res.data.response == 'success')  this.hideModal();
+            if(res.data.response == 'success')  {
+                 this.$emit('mailSent');
+                this.hideModal();
+            }
             else this.error();
         })
         .catch(() => this.error())
@@ -102,7 +105,6 @@ export default {
         this.modalMailSendLoading = false;
      },
      hideModal(){
-        this.$emit('mailSent');
         this.errors = [];
         this.forms.subject = '';
         this.forms.body = '';

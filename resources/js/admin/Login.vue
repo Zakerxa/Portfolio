@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-5">
         <div class="row pt-5 justify-content-center">
-            <div class="col-11 col-md-6 col-lg-4 mt-5 mb-5 pt-4 pb-5 card">
+            <form @submit.prevent="login()" class="col-11 col-md-6 col-lg-4 mt-5 mb-5 pt-4 pb-5 card">
                 <h3 class="fw-bold text-center mb-3">Login</h3>
                 <small class="text-danger pb-2">{{error}}</small>
                 <div class="form-floating mb-3">
@@ -46,7 +46,7 @@
                         Register
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>

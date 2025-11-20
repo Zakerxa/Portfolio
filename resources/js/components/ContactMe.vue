@@ -89,7 +89,7 @@
                              </div>
                              <div class="col-12">
                                 <b class="text-muted underlined">Why need a password?</b>
-                                <p>You can remove the form back using this password if that was a mistake or something.Password shouldn't be your social account or email.</p>
+                                <p>You can delete back by clicking profile Pic using current password if that was a mistake.Password shouldn't be your social account or email.</p>
                              </div>
                          </div>
                          <div class="modal-footer">

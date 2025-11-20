@@ -1,48 +1,42 @@
 require('bootstrap')
 import { createApp } from 'vue';
 import App from "./App.vue";
-import CKEditor from '@ckeditor/ckeditor5-vue';
 // import Router
 import router from './router';
-
 // import Authorization api
 import authorize from './authorize';
-
+// import Store Vuex
+import store from './store';
+//  import Ckeditor
+import CKEditor from '@ckeditor/ckeditor5-vue';
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { faCross } from '@fortawesome/free-solid-svg-icons';
-import { faMailForward } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons';
-import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
-import { faDesktop } from '@fortawesome/free-solid-svg-icons';
-import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { faShieldHalved } from '@fortawesome/free-solid-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faIdCardClip } from '@fortawesome/free-solid-svg-icons';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faBolt, faMailForward, faCircleLeft, faCross, faSignOut, faBell, faBars, faHistory, faCheckCircle, faEye, faEyeSlash, faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { faHistory } from '@fortawesome/free-solid-svg-icons';
 /* add icons to the library */
-library.add(faMailForward, faCircleLeft, faCross, faSignOut, faBell, faBars, faHistory, faCheckCircle, faEye, faEyeSlash, faGithub, faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop)
+library.add(faCode, faBolt, faMailForward, faCircleLeft, faCross, faSignOut, faBell, faBars, faHistory, faCheckCircle, faEye, faEyeSlash, faGithub, faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop)
 
 // AOS Library
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-const app = createApp(App).use(CKEditor).use(router);
+const app = createApp(App).use(CKEditor).use(router).use(store);
 
+// import { createI18n } from 'vue-i18n/dist/vue-i18n.esm-bundler.js';
+// import messages from './lang';
+// const i18n = createI18n({
+//     locale: 'en', // set locale
+//     fallbackLocale: 'en', // set fallback locale
+//     messages
+// });
+
+// app.use(i18n);
+
+app.config.productionTip = false;
 
 app.config.errorHandler = (err) => {
     /* handle error */
@@ -53,8 +47,9 @@ app.config.errorHandler = (err) => {
 const global = app.config.globalProperties;
 // Define Global Property
 global.csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+// global.$csrf = $('meta[name="csrf-token"]').attr('content');
 global.token = localStorage.getItem('bearer');
-global.mail = 'admin@portfolio.zakerxa.com';
+global.mail = '';
 global.$http = authorize;
 
 

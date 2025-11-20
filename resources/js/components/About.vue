@@ -34,23 +34,28 @@
 export default {
    data(){
     return{
-      abouts:[
-        {
-          qus : 'Name and Age',
-          icon: 'fa-id-card-clip',
-          ans : 'My name is Zin Min Htet.I am 22 years old right now.'
-        },
-        {
-          qus : 'Education',
-          icon: 'fa-graduation-cap',
-          ans : 'Ha ! That\'s not a good question for us. Actually, I am attending the <a href="https://www.eyu.edu.mm/about/profile" target="_blank" class="text-dark fw-bold">University of East Yangon</a>  & studying Physics major.'
-        },
-        {
-            qus : 'Hobbies',
-            icon: 'fa-person-running',
-            ans : 'Of course, That\'s an important thing. I like creating something awesome by coding. Sometimes I like to watch movies and play games.'
-        }
-      ]
+       abouts: [
+                {
+                    qus: 'Name and Age',
+                    icon: 'fa-id-card-clip',
+                    ans: "My name is Zin Min Htet. I am a 25-year-old aspiring professional, and I'm ready to take on new challenges."
+                },
+                {
+                    qus: 'Education',
+                    icon: 'fa-graduation-cap',
+                    ans: "I am currently attending the <a href='https://www.eyu.edu.mm/about/profile' target='_blank' class='text-dark fw-bold'>University of East Yangon</a>, specializing in B.Sc. Physics. I have completed my second year and will be advancing to the third year soon. This academic background emphasizes the analytical skills I bring to coding."
+                },
+                {
+                    qus: 'What I Do',
+                    icon: 'fa-code',
+                    ans: "I’m a Laravel + Vue.js developer who focuses on building modern and scalable web applications. I create real-time features using WebSockets, manage API integrations, and handle server deployment to ensure fast, secure, and reliable systems."
+                },
+                {
+                    qus: 'Hobbies',
+                    icon: 'fa-person-running',
+                    ans: 'My primary passion is creating something awesome with coding—turning complex problems into elegant solutions.I enjoy unwinding by watching movies or playing strategic games.'
+                }
+            ]
     }
    },
    props:{

@@ -53,15 +53,15 @@ export default {
             short:'Web applications are programs allowing better communication between businesses and their customers. Web apps can protect websites and software programs.',
             info : 'Web applications can be designed for a wide variety of uses and can be used by anyone from an organization to an individual for numerous reasons & a high level of security with so many web technologies on the market. Web apps can protect websites and software programs.'
         },
+                {
+            name:'Real-Time Features',
+            icon : 'fa-bolt',
+            short:'I build real-time systems using WebSockets and Laravel Echo for instant updates, live messaging, and interactive interfaces.'
+        },
         {
             name:'Google Map',
             icon : 'fa-map-location-dot',
             short:'Customers or website visitors get directions to your business and save customers the steps of opening a new browser window, leaving your website and finding directions.'
-        },
-        {
-            name:'HTTPS Feature',
-            icon : 'fa-shield-halved',
-            short:'(HTTPS) is a protocol that secures communication and data transfer between a user\'s web browser and a website. HTTPS is the secure version of HTTP.'
         }
        ]
     }

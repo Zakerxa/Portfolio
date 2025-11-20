@@ -2,6 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <h3 class="p-3 pl-0">Dashboard</h3>
+
+            <p>{{dashboardAdmin}}</p>
+
         </div>
         <div class="row" v-show="removeIds.length">
             <div class="col">
@@ -151,6 +154,8 @@ export default {
             selectAll: false,
             removeIds: [],
             delIcon  : [],
+            mail: 'test',
+
             // Mailing System
         }
     },
@@ -193,8 +198,14 @@ export default {
                prev_page_url : res.prev_page_url,
                next_page_url : res.next_page_url,
                per_page      : this.perPage
-           }
+          }
           this.readyFormLoading = false;
+        },
+        getPaginateWithUsers(url){
+            return this.$http
+            .get(this.endpoint+url)
+            .then(res =>  res.data.data)
+            .catch(err => console.log(err))
         },
         searchOver(){
             this.vuePaginate(this.current??null);
@@ -230,7 +241,6 @@ export default {
             });
 
             if (sameId.length > 0)  for (let i = 0; i < sameId.length; i++) this.removeIds.remove(sameId[i]);
-
             this.removeIds = ctn;
 
           }else{
@@ -250,12 +260,6 @@ export default {
             })
             .catch(err=>console.log("Error",err));
           }else alert('Reselect form again.');
-        },
-        getPaginateWithUsers(url){
-            return this.$http
-            .get(this.endpoint+url)
-            .then(res =>  res.data.data)
-            .catch(err => console.log(err))
         },
         read(e){
             //  If something is change Reselect All check
@@ -283,6 +287,11 @@ export default {
         mailSent(){
             $('#mailSuccess').modal('show');
             setTimeout(() =>  $('#mailSuccess').modal('hide'), 2000);
+        },
+        // Vuex
+        increment(){
+            this.$store.commit('increment');
+            console.log(this.$store.state.count)
         }
     },
     watch:{
@@ -291,6 +300,11 @@ export default {
         this.vuePaginate(this.current??null);
         return newvalue;
       }
+    },
+    computed:{
+        count(){
+          return this.$store.state.count;
+        }
     },
     mounted () {
       console.log(this.token)

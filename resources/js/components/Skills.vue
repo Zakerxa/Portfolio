@@ -28,32 +28,33 @@
 export default {
    data(){
     return{
-      skills:[
-        {
-            language : 'HTML, CSS, Bootstrap',
-            level    : 90
-        },
-        {
-            language : 'PHP',
-            level    : 85
-        },
-        {
-            language : 'VueJs',
-            level    : 80
-        },
-        {
-            language : 'Javascript',
-            level    : 70
-        },
-        {
-            language : 'Laravel',
-            level    : 65
-        },
-        {
-            language : 'Ajax, API',
-            level    : 60
-        }
-      ]
+            skills: [
+                {
+                    language: 'HTML, CSS, Bootstrap',
+                    level: 95
+                },
+                {
+                    language: 'VueJs',
+                    level: 95
+                },
+                {
+                    language: 'PHP',
+                    level: 90
+                },
+
+                {
+                    language: 'Javascript',
+                    level: 90
+                },
+                {
+                    language: 'Laravel',
+                    level: 85
+                },
+                {
+                    language: 'API',
+                    level: 85
+                }
+            ]
     }
    },
    props:{

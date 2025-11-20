@@ -13,7 +13,7 @@
                 /></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
             </li>
         </ul>
 
@@ -105,29 +105,7 @@
                                 <span class="right badge badge-danger" v-show="noti">New</span>
                             </p>
                         </a>
-                        <!-- <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Active Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Inactive Page</p>
-                                </a>
-                            </li>
-                        </ul> -->
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                               Recommend Form
-                            </p>
-                        </a>
-                    </li> -->
                     <li class="nav-item">
                         <a @click="logout()" class="nav-link">
                             <font-awesome-icon icon="fas fa-sign-out" />
@@ -174,10 +152,13 @@ export default {
         return newvalue;
       }
     },
+    computed:{
+        admin(){
+           return this.$store.state.dashboardAdmin;
+        }
+    },
     created () {
-        this.$http
-            .get('/api/user')
-            .then(response => (this.admin = response.data))
+        this.$store.commit('admin');
     }
 }
 </script>

@@ -59,7 +59,7 @@ class ContactFormController extends Controller
 
         $client = ContactForm::create($inputProduct);
         if($client){
-            Mail::to($client->authMail)->send(new ContactFormsMail($client));
+            Mail::to($client->authMail)->queue(new ContactFormsMail($client));
         }
 
         return response()->json(['response' => 'success']);

@@ -53,7 +53,6 @@ const router = createRouter({
     linkActiveClass: "active",
     linkExactActiveClass: "exact-active",
     scrollBehavior(to, from, savedPosition) {
-        // always scroll to top
         return { top: 0 }
     },
 })
