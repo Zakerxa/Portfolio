@@ -114,7 +114,7 @@ export default {
     border-radius: 50%;
     background: transparent!important;
     border: none;
-    width: 80%;
+    width: 95%;
 }
 
 @media screen and (min-width:450px) and (max-width : 575px) {
@@ -128,15 +128,15 @@ export default {
     }
 }
 
-.heroimgShadowMobile {
-    background: rgba(43, 91, 116, 0.664);
-    border-radius: 50%;
-    margin-top: 5px;
-    box-shadow: 1px 2px 5px rgb(106, 118, 230);
-    width: 90%;
-    padding: 0;
-    height: 12px;
-}
+// .heroimgShadowMobile {
+//     background: rgba(43, 91, 116, 0.664);
+//     border-radius: 50%;
+//     margin-top: 5px;
+//     box-shadow: 1px 2px 5px rgb(106, 118, 230);
+//     width: 90%;
+//     padding: 0;
+//     height: 12px;
+// }
 
 .heroimgShadow {
     background: rgba(43, 91, 116, 0.664);

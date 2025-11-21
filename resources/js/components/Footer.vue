@@ -68,7 +68,7 @@
     <div class="container">
         <div class="row">
              <div class="col-12 text-center pt-4 pb-4">
-                <small class="text-muted">Copyright @2022 Zakerxa-Portfolio.All rights reserved.</small>
+                <small class="text-muted">Copyright @2025 Zakerxa-Portfolio.All rights reserved.</small>
             </div>
         </div>
     </div>
