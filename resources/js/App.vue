@@ -13,26 +13,24 @@
       <div v-if="admin">
         <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
         <router-view/>
-
       </div>
+
       <div v-else>
         <Transition appear name="fade">
-          <Navigation v-if="scrollDown"/>
+          <Navigation v-show="scrollDown"/>
         </Transition>
 
         <router-view/>
 
         <Footer :primary-bg="primaryBg" :secondary-bg="secondaryBg" :primary-color="primaryColor" />
+
       </div>
-
-
 
     </div>
 
 </template>
 
 <script>
-import Navigation from './components/Navigation.vue';
 import Footer from './components/Footer.vue';
 export default {
     data(){
@@ -48,7 +46,6 @@ export default {
         }
     },
     components:{
-      Navigation,
       Footer
     },
     created () {
@@ -73,7 +70,7 @@ export default {
     },
     mounted(){
        document.addEventListener('DOMContentLoaded', () => this.loading = false);
-       this.$nextTick(()=> console.log("Render has been loaded"));
+    //    this.$nextTick(()=> console.log("Render has been loaded"));
     }
 }
 </script>

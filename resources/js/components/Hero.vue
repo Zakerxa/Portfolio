@@ -18,9 +18,7 @@
                     <div data-aos="fade-left" data-aos-delay="1000" data-aos-duration="1000"
                         class="row justify-content-center align-items-center d-md-none">
                         <div class="col-10 col-sm-8 text-center">
-                            <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" :style="imgRotate"
-                                draggable="false" src="/images/hero.png" class="heroImage" alt="">
-                            <div :style="imgShadow" class="heroimgShadowMobile"></div>
+                            <img draggable="false" src="/images/hero.png" class="heroImage" alt="">
                         </div>
                     </div>
 
@@ -39,8 +37,7 @@
                 </div>
                 <div class="col-10 d-none d-md-block col-md-6 col-lg-5 align-self-center offset-lg-1"
                     data-aos-delay="1000" data-aos-duration="1000" data-aos="fade-left">
-                    <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()"  draggable="false"
-                        src="/images/hero.png" class="heroImage" alt="">
+                    <img @mouseover="imgMouseover()" @mouseleave="imgMouseleave()" draggable="false" src="/images/hero.png" class="heroImage" alt="">
                     <!-- <div :style="imgShadow" class="heroimgShadow"></div> -->
                 </div>
             </div>
@@ -68,17 +65,14 @@ export default {
         },
         imgMouseover() {
             this.imgRotate = `transition:transform 0.7s;transform: rotateX(0deg) rotateY(180deg);background:${this.primaryBg}`;
-            this.imgShadow = `transition:transform 0.8s;transform:rotateY(180deg);background:${this.primaryBg}`;
         },
         imgMouseleave() {
             this.imgRotate = `transition:transform 0.5s;transform: rotateY(0deg) rotateX(0deg);background:${this.primaryBg}`;
-            this.imgShadow = `transition:transform 0.7s;transform:rotateY(0deg);background:${this.primaryBg}`;
         }
     },
     mounted() {
         setTimeout(() => {
             this.imgRotate = `transition:transform 2s;transform: rotateX(0deg) rotateY(0deg);background:${this.primaryBg}`;
-            this.imgShadow = `transition:transform 2s;transform:rotateY(180deg);background:${this.primaryBg}`;
         }, 700);
     }
 }
@@ -127,16 +121,6 @@ export default {
         width: 60%;
     }
 }
-
-// .heroimgShadowMobile {
-//     background: rgba(43, 91, 116, 0.664);
-//     border-radius: 50%;
-//     margin-top: 5px;
-//     box-shadow: 1px 2px 5px rgb(106, 118, 230);
-//     width: 90%;
-//     padding: 0;
-//     height: 12px;
-// }
 
 .heroimgShadow {
     background: rgba(43, 91, 116, 0.664);

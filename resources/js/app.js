@@ -10,9 +10,10 @@ import store from './store';
 //  import Ckeditor
 import CKEditor from '@ckeditor/ckeditor5-vue';
 /* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
 /* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Navigation from './components/Navigation.vue';
 /* import specific icons */
 import { faCode, faBolt, faMailForward, faCircleLeft, faCross, faSignOut, faBell, faBars, faHistory, faCheckCircle, faEye, faEyeSlash, faPersonRunning, faGraduationCap, faIdCardClip, faSearch, faShieldHalved, faMapLocationDot, faEnvelope, faMobileScreen, faDesktop } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -23,6 +24,8 @@ library.add(faCode, faBolt, faMailForward, faCircleLeft, faCross, faSignOut, faB
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
+
+
 
 const app = createApp(App).use(CKEditor).use(router).use(store);
 
@@ -54,6 +57,7 @@ global.$http = authorize;
 
 
 app.component('font-awesome-icon', FontAwesomeIcon);
+app.component('Navigation', Navigation);
 app.mount('#app');
 
 // Array remove Function

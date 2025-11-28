@@ -10,12 +10,10 @@
     <meta property="og:url" content="https://portfolio.zakerxa.com" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Zakerxa Portfolio" />
-    <meta property="og:description"
-        content="I am a BackEnd Web Developer with over 7 years of experience with PHP, VueJs & Laravel." />
+    <meta property="og:description" content="I am a BackEnd Web Developer with over 7 years of experience with PHP, VueJs & Laravel." />
     <title>Portfolio</title>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./slick/slick.css">
@@ -31,9 +29,8 @@
 
 <body class="antialiased">
     <div id="app"></div>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    {{-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> --}}
     <script src="./slick/slick.min.js"></script>
     <script src="./adminlte/dist/js/adminlte.min.js"></script>
 
